@@ -67,6 +67,19 @@ class Inc_cabecera
 
     }
 
+    static function insertar($sql){
+        $con = self::conectar();
+        $query = $con->prepare($sql);
+        try {
+            $query->execute();
+            $con = null;
+            return '<h3>Se han guardado los datos correctamente';
+        } catch(PDOException $e){
+            return '<h3>Ha habido un error al guardar los datos</h3> ' . $e->getMessage();
+        }
+        
+    }
+
     static function AMDaDMA($fecha)
     {
         $string = strtotime($fecha);
