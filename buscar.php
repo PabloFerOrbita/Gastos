@@ -18,7 +18,10 @@
     echo '<form method="GET">';
     echo '<input type="text" placeholder="Buscar..." name="busqueda" id="busqueda"></input>';
     echo '<button type="submit">Buscar</button>';
-    echo '</form>';
+    echo '</form><br>';
+    if(isset($_GET['busqueda'])){
+        Inc_cabecera::MostrarLista('SELECT * FROM gastos WHERE descripcion like "%' . $_GET['busqueda'] . '%" ORDER BY fecha DESC');
+    }
     Inc_pie::pie();
     ?>
 </body>
