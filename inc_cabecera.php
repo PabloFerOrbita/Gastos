@@ -67,6 +67,18 @@ class Inc_cabecera
 
     }
 
+    static function recibirRegistro($descripcion){
+        $con = self::conectar();
+        $query = $con->prepare('SELECT * FROM gastos WHERE descripcion like "' . $descripcion . '"');
+        try {
+            $query->execute();
+            $registro = $query->fetchAll();
+            return $registro;
+        } catch(PDOException $e){
+            return '<h3>Registro retornado</h3> ' .  $e->getMessage();
+        }
+    }
+
     static function insertar($sql){
         $con = self::conectar();
         $query = $con->prepare($sql);
