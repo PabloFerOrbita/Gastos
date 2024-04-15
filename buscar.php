@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h4>Has elegido la opción Buscar</h4>
 </body>
 </html>
