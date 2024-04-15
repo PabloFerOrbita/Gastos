@@ -26,4 +26,11 @@ class Inc_cabecera
             echo $e->getMessage();
         }
     }
+
+   
+
+    static function AMDaDMA($fecha){
+        $string = strtotime($fecha);
+        return date('d-m-Y', $string);
+    }
 }
