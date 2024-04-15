@@ -15,6 +15,7 @@
     ?>
     <h4>Has elegido la opción listado</h4>
     <?php
+    Inc_cabecera::MostrarLista('SELECT fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
     Inc_pie::pie();
     ?>
 </body>
