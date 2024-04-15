@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    
+    <?php
+    require_once('inc_cabecera.php');
+    Inc_cabecera::cabecera();
+    ?>
 <script>
     $(window).on('load', () =>{
         $('#buscar').on('click', ()=>{window.location.href="buscar.php"});

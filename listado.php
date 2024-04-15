@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+    require_once('inc_cabecera.php');
+    Inc_cabecera::cabecera();
+    ?>
     <h4>Has elegido la opción listado</h4>
 </body>
 </html>
