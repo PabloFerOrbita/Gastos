@@ -57,6 +57,15 @@ class Inc_cabecera
         $con = null;
     }
 
+    static function contar(){
+        $con = self::conectar();
+        $query = $con->prepare('SELECT COUNT(*) FROM gastos');
+        $query->execute();
+        $numero =  $query->fetchColumn();
+        $con = null;
+        return $numero;
+
+    }
 
     static function AMDaDMA($fecha)
     {
