@@ -15,10 +15,10 @@
     ?>
     <h4>Has elegido la opción Nuevo</h4>
     <?php
-    if(isset($_GET['descripcion']) && isset($_GET['categoria']) && isset($_GET['fecha']) && isset($_GET['importe'])){
-        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_GET['fecha'] . '", ' . $_GET['importe'] . ', "' . $_GET['descripcion'] .'", "' . $_GET['categoria'] .  '")' );
+    if(isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])){
+        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] .'", "' . $_POST['categoria'] .  '")' );
     }
-    echo '<form method="GET">';
+    echo '<form method="POST">';
     echo '<label for="descripcion">Descripcion del gasto</label><br>';
     echo '<textarea id="descripcion" name="descripcion"></textarea><br><br>';
     echo '<label for="importe">Importe del gasto</label><br>';
