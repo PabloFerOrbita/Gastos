@@ -11,8 +11,10 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
+    require_once('inc_pie.php');
     Inc_cabecera::cabecera();
     Inc_cabecera::insertarBotones();
+    Inc_pie::pie();
     ?>
 <script>
     $(window).on('load', () =>{
