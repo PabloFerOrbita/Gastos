@@ -26,7 +26,21 @@ class Inc_cabecera
             echo $e->getMessage();
         }
     }
-
+    static function MostrarLista($sql)
+    {
+        $con = self::conectar();
+        $query = $con->prepare($sql);
+        $query->execute();
+        $gastos = $query->fetchAll();
+        echo '<table border=1>';
+        echo '<tr>';
+        echo '<th>Fecha</th><th>importe</th><th>descripcion</th><th>Modificar</th>';
+        echo '</tr>';
+        foreach ($gastos as $gasto) {
+            echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' .$gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td><td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
+        }
+        $con = null;
+    }
    
 
     static function AMDaDMA($fecha){
