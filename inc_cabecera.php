@@ -75,7 +75,7 @@ class Inc_cabecera
             $registro = $query->fetchAll();
             return $registro;
         } catch(PDOException $e){
-            return '<h3>Registro retornado</h3> ' .  $e->getMessage();
+            return '<h3>Ha habido un error al devolver el registro</h3>';
         }
     }
 
