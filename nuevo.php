@@ -15,6 +15,9 @@
     ?>
     <h4>Has elegido la opción Nuevo</h4>
     <?php
+    if(isset($_GET['descripcion']) && isset($_GET['categoria']) && isset($_GET['fecha']) && isset($_GET['importe'])){
+        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_GET['fecha'] . '", ' . $_GET['importe'] . ', "' . $_GET['categoria'] .'", "' . $_GET['descripcion'] .  '")' );
+    }
     echo '<form method="GET">';
     echo '<label for="descripcion">Descripcion del gasto</label><br>';
     echo '<textarea id="descripcion" name="descripcion"></textarea><br><br>';
