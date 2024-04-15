@@ -14,6 +14,10 @@
     Inc_cabecera::cabecera();
     ?>
     <?php
+    if (isset($_GET['descripcion'])) {
+        $registro = Inc_cabecera::recibirRegistro($_GET['descripcion']);
+       
+    }
     Inc_pie::pie();
     ?>
 </body>
