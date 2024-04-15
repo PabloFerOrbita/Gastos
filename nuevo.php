@@ -15,6 +15,16 @@
     ?>
     <h4>Has elegido la opción Nuevo</h4>
     <?php
+    echo '<form method="GET">';
+    echo '<label for="descripcion">Descripcion del gasto</label><br>';
+    echo '<textarea id="descripcion" name="descripcion"></textarea><br><br>';
+    echo '<label for="importe">Importe del gasto</label><br>';
+    echo '<input type="number" name="importe" id="importe" min="0"></input><br><br>';
+    echo '<label for="fecha">Fecha del gasto</label><br>';
+    echo '<input type="date" name="fecha" id="fecha"></input><br><br>';
+    echo '<label for="categoria">Categoria del gasto</label><br>';
+    echo '<input type="text" name="categoria" id="categoria"></input><br><br>';
+    echo '<button type="submit">Guardar</button>';
     Inc_pie::pie();
     ?>
 </body>
