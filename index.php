@@ -13,7 +13,7 @@
     require_once('inc_cabecera.php');
     require_once('inc_pie.php');
     Inc_cabecera::cabecera();
-    echo '<h3>Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes';
+    echo '<h3>Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes<br><br>';
     Inc_cabecera::insertarBotones();
     Inc_pie::pie();
     ?>
