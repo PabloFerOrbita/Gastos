@@ -15,6 +15,10 @@
     ?>
     <h4>Has elegido la opción Buscar</h4>
     <?php
+    echo '<form method="GET">';
+    echo '<input type="text" placeholder="Buscar..." name="busqueda" id="busqueda"></input>';
+    echo '<button type="submit">Buscar</button>';
+    echo '</form>';
     Inc_pie::pie();
     ?>
 </body>
