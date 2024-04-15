@@ -14,6 +14,9 @@
     Inc_cabecera::cabecera();
     ?>
     <?php
+    if(isset($_GET['editar'])){
+        echo Inc_cabecera::actualizarRegistro('UPDATE gastos SET fecha = "' . $_GET['fecha'] . '", descripcion = "' . implode(" ", explode("+", $_GET['descripcion'])) . '", categoria = "' . $_GET['categoria'] . '", importe = ' . $_GET['importe'] . ' WHERE descripcion like "' . implode(" ", explode("+", $_GET['editar'])). '"' );
+    }
     if (isset($_GET['descripcion'])) {
         $registro = Inc_cabecera::recibirRegistro($_GET['descripcion']);
         echo '<form method="GET">';
