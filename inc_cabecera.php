@@ -34,10 +34,18 @@ class Inc_cabecera
         $gastos = $query->fetchAll();
         echo '<table border=1>';
         echo '<tr>';
-        echo '<th>Fecha</th><th>importe</th><th>descripcion</th><th>Modificar</th>';
+        echo '<th>Fecha</th><th>Importe</th><th>Descripcion</th>';
+        if(array_key_exists('categoria', $gastos[0])){
+            echo '<th>Categoria</th>';
+        }
+        echo '<th>Modificar</th>';
         echo '</tr>';
         foreach ($gastos as $gasto) {
-            echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' .$gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td><td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
+            echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' .$gasto['descripcion'] . ' </td><td> ' . $gasto['importe'] . ' </td>';
+            if(array_key_exists('categoria', $gasto)){
+                echo '<td> ' . $gasto['categoria'] . ' </td>';
+            }
+            echo '<td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
         }
         echo '</table>';
         $con = null;
