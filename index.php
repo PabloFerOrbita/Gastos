@@ -12,6 +12,7 @@
     <?php
     require_once('inc_cabecera.php');
     Inc_cabecera::cabecera();
+    Inc_cabecera::insertarBotones();
     ?>
 <script>
     $(window).on('load', () =>{
