@@ -12,7 +12,13 @@
     <button id="buscar">Buscar</button><br><br>
     <button id="listado">Listado</button><br><br>
     <button id="nuevo">Nuevo</button><br><br>
-
+<script>
+    $(window).on('load', () =>{
+        $('#buscar').on('click', ()=>{window.location.href="buscar.php"});
+        $('#listado').on('click', ()=>{window.location.href="listado.php"});
+        $('#nuevo').on('click', ()=>{window.location.href="nuevo.php"});
+    } )
+</script>
 </body>
 
 </html>
