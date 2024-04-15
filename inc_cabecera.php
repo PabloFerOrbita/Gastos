@@ -32,27 +32,34 @@ class Inc_cabecera
         $query = $con->prepare($sql);
         $query->execute();
         $gastos = $query->fetchAll();
+        if (count($gastos) > 0) {
         echo '<table border=1>';
         echo '<tr>';
         echo '<th>Fecha</th><th>Importe</th><th>Descripcion</th>';
-        if(array_key_exists('categoria', $gastos[0])){
+        if (array_key_exists('categoria', $gastos[0])) {
             echo '<th>Categoria</th>';
         }
         echo '<th>Modificar</th>';
         echo '</tr>';
-        foreach ($gastos as $gasto) {
-            echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' .$gasto['descripcion'] . ' </td><td> ' . $gasto['importe'] . ' </td>';
-            if(array_key_exists('categoria', $gasto)){
-                echo '<td> ' . $gasto['categoria'] . ' </td>';
+      
+            foreach ($gastos as $gasto) {
+                echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['descripcion'] . ' </td><td> ' . $gasto['importe'] . ' </td>';
+                if (array_key_exists('categoria', $gasto)) {
+                    echo '<td> ' . $gasto['categoria'] . ' </td>';
+                }
+                echo '<td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
             }
-            echo '<td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
+            echo '</table>';
+        } else {
+            echo '<h4>No se han encontrado registros</h4>';
         }
-        echo '</table>';
+
         $con = null;
     }
-   
 
-    static function AMDaDMA($fecha){
+
+    static function AMDaDMA($fecha)
+    {
         $string = strtotime($fecha);
         return date('d-m-Y', $string);
     }
