@@ -75,7 +75,7 @@ class Inc_cabecera
             $con = null;
             return '<h3>Se han guardado los datos correctamente';
         } catch(PDOException $e){
-            return '<h3>Ha habido un error al guardar los datos</h3> ' . $e->getMessage();
+            return '<h3>Ha habido un error al guardar los datos</h3> ';
         }
         
     }
