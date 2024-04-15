@@ -43,7 +43,7 @@ class Inc_cabecera
         echo '</tr>';
       
             foreach ($gastos as $gasto) {
-                echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['descripcion'] . ' </td><td> ' . $gasto['importe'] . ' </td>';
+                echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td>';
                 if (array_key_exists('categoria', $gasto)) {
                     echo '<td> ' . $gasto['categoria'] . ' </td>';
                 }
