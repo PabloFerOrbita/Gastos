@@ -39,6 +39,7 @@ class Inc_cabecera
         foreach ($gastos as $gasto) {
             echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' .$gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td><td> <a type="button" href="modificar.php">Modificar</a> </td></tr>';
         }
+        echo '</table>';
         $con = null;
     }
    
