@@ -16,7 +16,17 @@
     <?php
     if (isset($_GET['descripcion'])) {
         $registro = Inc_cabecera::recibirRegistro($_GET['descripcion']);
-       
+        echo '<form method="GET">';
+        echo '<label for="descripcion">Descripcion del gasto</label><br>';
+        echo '<textarea id="descripcion" name="descripcion">' . $registro[0]['descripcion'] . '</textarea><br><br>';
+        echo '<label for="importe">Importe del gasto</label><br>';
+        echo '<input type="number" name="importe" id="importe" min="0" step="any" value=' . doubleval($registro[0]['importe'])  . '></input><br><br>';
+        echo '<label for="fecha">Fecha del gasto</label><br>';
+        echo '<input type="date" name="fecha" id="fecha" value="' .  $registro[0]['fecha'] . '"></input><br><br>';
+        echo '<label for="categoria">Categoria del gasto</label><br>';
+        echo '<input type="text" name="categoria" id="categoria" value=' . $registro[0]['categoria'] .  '></input><br><br>';
+        echo '<input type="hidden" name="editar" id="editar"/>';
+        echo '<button type="submit">Guardar</button>';
     }
     Inc_pie::pie();
     ?>
