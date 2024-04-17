@@ -38,6 +38,10 @@
         $('#fecha').on('blur', (e)=>{
             !e.target.checkValidity() && $(e.target).val(""); 
         })
+
+         $('#importe').on('keydown', (e) => {
+            ['e', 'E', '+', '-', '.'].includes(e.key) && e.preventDefault();
+         })
     </script>
 </body>
 
