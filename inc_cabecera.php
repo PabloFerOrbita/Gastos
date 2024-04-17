@@ -64,10 +64,10 @@ class Inc_cabecera
         return $numero;
     }
 
-    static function recibirRegistro($descripcion)
+    static function recibirRegistro($ID)
     {
         $con = self::conectar();
-        $query = $con->prepare('SELECT * FROM gastos WHERE descripcion like "' . $descripcion . '"');
+        $query = $con->prepare('SELECT * FROM gastos WHERE ID = ' . $ID);
         try {
             $query->execute();
             $registro = $query->fetchAll();
