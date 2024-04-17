@@ -22,7 +22,7 @@
     echo '<label for="descripcion">Descripcion del gasto</label><br>';
     echo '<textarea id="descripcion" name="descripcion" required></textarea><br><br>';
     echo '<label for="importe" required>Importe del gasto</label><br>';
-    echo '<input type="number" name="importe" id="importe" min="0" step="any" required></input><br><br>';
+    echo '<input type="number" name="importe" id="importe"  max="99999999" step="0.01" required></input><br><br>';
     echo '<label for="fecha">Fecha del gasto</label><br>';
     echo '<input type="date" name="fecha" id="fecha" required></input><br><br>';
     echo '<label for="categoria">Categoria del gasto</label><br>';
