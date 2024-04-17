@@ -41,7 +41,7 @@
         })
 
         $('#importe').on('input', (e) => {
-            !e.target.checkValidity() && $(e.target).val(numero);
+            (!e.target.checkValidity() && $(e.target).val() != '') && $(e.target).val(numero);
             numero = $(e.target).val();
         })
 
