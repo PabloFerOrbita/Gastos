@@ -22,13 +22,13 @@
         if ( count($registro) > 0){
         echo '<form method="POST">';
         echo '<label for="descripcion">Descripcion del gasto</label><br>';
-        echo '<textarea id="descripcion" name="descripcion">' . $registro[0]['descripcion'] . '</textarea><br><br>';
-        echo '<label for="importe">Importe del gasto</label><br>';
-        echo '<input type="number" name="importe" id="importe" min="0" step="any" value=' . doubleval($registro[0]['importe'])  . '></input><br><br>';
+        echo '<textarea id="descripcion" name="descripcion" required>' . $registro[0]['descripcion'] . '</textarea><br><br>';
+        echo '<label for="importe" required>Importe del gasto</label><br>';
+        echo '<input type="number" name="importe" id="importe" min="0" step="any" value=' . doubleval($registro[0]['importe'])  . ' required></input><br><br>'; //TODO cambiar step any a 0.01, poner maximo de 8 cifras
         echo '<label for="fecha">Fecha del gasto</label><br>';
-        echo '<input type="date" name="fecha" id="fecha" value="' .  $registro[0]['fecha'] . '"></input><br><br>';
+        echo '<input type="date" name="fecha" id="fecha" value="' .  $registro[0]['fecha'] . '" required></input><br><br>';
         echo '<label for="categoria">Categoria del gasto</label><br>';
-        echo '<input type="text" name="categoria" id="categoria" value=' . $registro[0]['categoria'] .  '></input><br><br>';
+        echo '<input type="text" name="categoria" id="categoria" value=' . $registro[0]['categoria'] .  ' required></input><br><br>';
         echo '<input type="hidden" name="editar" id="editar" value="' . $registro[0]['descripcion'] . '"/>';
         echo '<button type="submit">Guardar</button>';}
         else{
