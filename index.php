@@ -14,7 +14,6 @@
     //TODO leer documentación del require_once
     //TODO mejorar el front
     //TODO fecha 31/04 por que da error
-    //TODO cambiar menú
     //TODO pruebas de todo
     require_once('inc_cabecera.php');
     
