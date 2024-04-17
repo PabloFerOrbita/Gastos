@@ -10,7 +10,6 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
-    require_once('inc_pie.php');
     ?>
     <h4>Has elegido la opción Buscar</h4>
     <?php
