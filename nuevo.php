@@ -35,8 +35,14 @@
     require_once('inc_pie.php');
     ?>
     <script>
+        var numero = 0;
         $('#fecha').on('blur', (e)=>{
             !e.target.checkValidity() && $(e.target).val(""); 
+        })
+
+        $('#importe').on('input', (e) => {
+            !e.target.checkValidity() && $(e.target).val(numero);
+            numero = $(e.target).val();
         })
 
          $('#importe').on('keydown', (e) => {
