@@ -1,8 +1,8 @@
-<button id="buscar">Buscar</button>;
-<button id="listado">Listado</button>;
-<button id="nuevo">Nuevo</button>;
+<button id="buscar">Buscar</button>
+<button id="listado">Listado</button>
+<button id="nuevo">Nuevo</button>
 
-<h1>Ejemplo de Cabecera</h1>;
+<h1>Ejemplo de Cabecera</h1>
 <?php
 class Inc_cabecera
 {
