@@ -28,7 +28,10 @@
             echo '<label for="fecha">Fecha del gasto</label><br>';
             echo '<input type="date" name="fecha" id="fecha" value="' .  $registro[0]['fecha'] . '" required></input><br><br>';
             echo '<label for="categoria">Categoria del gasto</label><br>';
-            echo '<input type="text" name="categoria" id="categoria" value=' . $registro[0]['categoria'] .  ' required></input><br><br>';
+            echo '<select name="categoria" id="categoria" required>
+            <option value="telefono">Telefono</option>
+            <option value="ocio">Ocio</option>
+            </select><br><br>';
             echo '<input type="hidden" name="editar" id="editar" value="' . $registro[0]['ID'] . '"/>';
             echo '<button type="submit">Guardar</button>';
         } else {
@@ -41,6 +44,8 @@
         $('#fecha').on('blur', (e)=>{
             !e.target.checkValidity() && $(e.target).val(<?= json_encode($registro[0]['fecha']) ?>); 
         })
+        
+        $('#categoria').val(<?= json_encode($registro[0]['categoria'])?>)
     </script>
 </body>
 
