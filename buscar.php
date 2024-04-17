@@ -11,7 +11,6 @@
     <?php
     require_once('inc_cabecera.php');
     require_once('inc_pie.php');
-    Inc_cabecera::cabecera();
     ?>
     <h4>Has elegido la opción Buscar</h4>
     <?php

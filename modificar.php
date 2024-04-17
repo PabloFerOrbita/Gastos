@@ -10,8 +10,7 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
-    require_once('inc_pie.php');
-    Inc_cabecera::cabecera();
+ 
     ?>
     <?php
     if(isset($_POST['editar'])){
