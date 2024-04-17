@@ -26,7 +26,11 @@
     echo '<label for="fecha">Fecha del gasto</label><br>';
     echo '<input type="date" name="fecha" id="fecha"  required></input><br><br>';
     echo '<label for="categoria">Categoria del gasto</label><br>';
-    echo '<input type="text" name="categoria" id="categoria" required></input><br><br>';
+    echo '<select name="categoria" id="categoria" required>
+    <option value=""  disabled selected >Elige una opción</option>
+    <option value="telefono">Telefono</option>
+    <option value="ocio">Ocio</option>
+    </select><br><br>';
     echo '<button type="submit">Guardar</button>';
     require_once('inc_pie.php');
     ?>
