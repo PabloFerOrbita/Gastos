@@ -24,7 +24,7 @@
         echo '<label for="descripcion">Descripcion del gasto</label><br>';
         echo '<textarea id="descripcion" name="descripcion" required>' . $registro[0]['descripcion'] . '</textarea><br><br>';
         echo '<label for="importe" required>Importe del gasto</label><br>';
-        echo '<input type="number" name="importe" id="importe" min="0" max="99999999" step="0.01"  value=' . doubleval($registro[0]['importe'])  . ' required></input><br><br>'; //TODO cambiar step any a 0.01, poner maximo de 8 cifras
+        echo '<input type="number" name="importe" id="importe" min="0.01" max="99999999" step="0.01"  value=' . doubleval($registro[0]['importe'])  . ' required></input><br><br>'; //TODO cambiar step any a 0.01, poner maximo de 8 cifras
         echo '<label for="fecha">Fecha del gasto</label><br>';
         echo '<input type="date" name="fecha" id="fecha" value="' .  $registro[0]['fecha'] . '" required></input><br><br>';
         echo '<label for="categoria">Categoria del gasto</label><br>';
