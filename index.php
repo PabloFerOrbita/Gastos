@@ -23,13 +23,7 @@
 
     require_once('inc_pie.php');
     ?>
-<script>
 
-
-        $('#buscar').on('click', ()=>{window.location.href="buscar.php"});
-        $('#listado').on('click', ()=>{window.location.href="listado.php"});
-        $('#nuevo').on('click', ()=>{window.location.href="nuevo.php"});
-</script>
 </body>
 
 </html>
