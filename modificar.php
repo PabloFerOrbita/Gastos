@@ -17,8 +17,8 @@
     if (isset($_POST['editar'])) {
         echo Inc_cabecera::actualizarRegistro('UPDATE gastos SET fecha = "' . $_POST['fecha'] . '", descripcion = "' . implode(" ", explode("+", $_POST['descripcion'])) . '", categoria = "' . $_POST['categoria'] . '", importe = ' . $_POST['importe'] . ' WHERE ID = ' . $_POST['editar']);
     }
-    if (isset($_GET['descripcion']) || isset($_POST['descripcion'])) {
-        $registro = Inc_cabecera::recibirRegistro($_POST['descripcion'] ?? $_GET['descripcion']);
+    if (isset($_GET['ID'])) {
+        $registro = Inc_cabecera::recibirRegistro($_GET['ID']);
         if (count($registro) > 0) {
             echo '<form method="POST">';
             echo '<label for="descripcion">Descripcion del gasto</label><br>';
