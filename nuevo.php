@@ -15,8 +15,8 @@
     ?>
     <h4>Has elegido la opción Nuevo</h4>
     <?php
-    if(isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])){
-        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] .'", "' . $_POST['categoria'] .  '")' );
+    if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
+        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] . '", "' . $_POST['categoria'] .  '")');
     }
     echo '<form method="POST">';
     echo '<label for="descripcion">Descripcion del gasto</label><br>';
@@ -35,19 +35,25 @@
     require_once('inc_pie.php');
     ?>
     <script>
-        var numero = 0;
-        $('#fecha').on('blur', (e)=>{
-            !e.target.checkValidity() && $(e.target).val(""); 
+        //TODO hacer que si se introduce 0 el valor cambie automáticamente a 0.01
+        //TODO
+        var numero = 0.01;
+        $('#fecha').on('blur', (e) => {
+            !e.target.checkValidity() && $(e.target).val("");
         })
 
         $('#importe').on('input', (e) => {
-            (!e.target.checkValidity() && $(e.target).val() != '') && $(e.target).val(numero);
+            console.log(e.target.validity.badInput);
+            if (!e.target.checkValidity()) {
+                if (($(e.target).val() === '' && !e.target.validity.badInput)) {
+                    $(e.target).val('');
+                } else if ($(e.target).val() != '0' && $(e.target).val() != '0.0') {
+                    $(e.target).val(numero);
+                }
+            }
             numero = $(e.target).val();
-        })
 
-         $('#importe').on('keydown', (e) => {
-            ['e', 'E', '+', '-', '.'].includes(e.key) && e.preventDefault();
-         })
+        })
     </script>
 </body>
 
