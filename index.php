@@ -10,10 +10,8 @@
 
 <body>
     <?php
-    //TODO cambiar la base de datos para tener un id
     //TODO leer documentación del require_once
     //TODO mejorar el front
-    //TODO fecha 31/04 por que da error
     //TODO pruebas de todo
     require_once('inc_cabecera.php');
     
