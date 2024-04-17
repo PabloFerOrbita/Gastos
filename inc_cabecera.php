@@ -44,7 +44,7 @@ class Inc_cabecera
                 if (array_key_exists('categoria', $gasto)) {
                     echo '<td> ' . $gasto['categoria'] . ' </td>';
                 }
-                echo '<td> <a type="button" href="modificar.php?descripcion=' . $gasto['ID'] . '">Modificar</a> </td></tr>';
+                echo '<td> <a type="button" href="modificar.php?ID=' . $gasto['ID'] . '">Modificar</a> </td></tr>';
             }
             echo '</table>';
         } else {
