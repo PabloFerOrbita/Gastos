@@ -37,6 +37,11 @@
     }
     require_once('inc_pie.php');
     ?>
+    <script>
+        $('#fecha').on('blur', (e)=>{
+            !e.target.checkValidity() && $(e.target).val(<?= json_encode($registro[0]['fecha']) ?>); 
+        })
+    </script>
 </body>
 
 </html>
