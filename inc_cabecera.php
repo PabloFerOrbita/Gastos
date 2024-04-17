@@ -1,3 +1,4 @@
+<button id="inicio">Inicio</button>
 <button id="buscar">Buscar</button>
 <button id="listado">Listado</button>
 <button id="nuevo">Nuevo</button>
@@ -110,6 +111,7 @@ class Inc_cabecera
 }
 ?>
 <script>
+$('#inicio').on('click', ()=>(window.location.href="index.php"));
 $('#buscar').on('click', ()=>{window.location.href="buscar.php"});
 $('#listado').on('click', ()=>{window.location.href="listado.php"});
 $('#nuevo').on('click', ()=>{window.location.href="nuevo.php"});
