@@ -24,12 +24,17 @@
     echo '<label for="importe" required>Importe del gasto</label><br>';
     echo '<input type="number" name="importe" min="0.01" id="importe"  max="99999999" step="0.01" required></input><br><br>';
     echo '<label for="fecha">Fecha del gasto</label><br>';
-    echo '<input type="date" name="fecha" id="fecha" required></input><br><br>';
+    echo '<input type="date" name="fecha" id="fecha"  required></input><br><br>';
     echo '<label for="categoria">Categoria del gasto</label><br>';
     echo '<input type="text" name="categoria" id="categoria" required></input><br><br>';
     echo '<button type="submit">Guardar</button>';
     require_once('inc_pie.php');
     ?>
+    <script>
+        $('#fecha').on('blur', (e)=>{
+            !e.target.checkValidity() && $(e.target).val(""); 
+        })
+    </script>
 </body>
 
 </html>
