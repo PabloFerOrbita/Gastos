@@ -17,11 +17,11 @@
     //TODO cambiar menú
     //TODO pruebas de todo
     require_once('inc_cabecera.php');
-    require_once('inc_pie.php');
+    
 
     echo '<h3>Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes</h3><br><br>';
 
-    Inc_pie::pie();
+    require_once('inc_pie.php');
     ?>
 <script>
     //TODO quitar window.onload

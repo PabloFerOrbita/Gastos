@@ -34,7 +34,7 @@
             echo 'El registro no existe';
         }
     }
-    Inc_pie::pie();
+    require_once('inc_pie.php');
     ?>
 </body>
 

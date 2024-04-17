@@ -10,12 +10,11 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
- 
     ?>
     <h4>Has elegido la opción listado</h4>
     <?php
     Inc_cabecera::MostrarLista('SELECT fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
-    Inc_pie::pie();
+    require_once('inc_pie.php');
     ?>
 </body>
 

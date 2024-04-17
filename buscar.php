@@ -21,7 +21,7 @@
     if(isset($_GET['busqueda'])){
         Inc_cabecera::MostrarLista('SELECT * FROM gastos WHERE descripcion like "%' . $_GET['busqueda'] . '%" ORDER BY fecha DESC');
     }
-    Inc_pie::pie();
+    require_once('inc_pie.php');
     ?>
 </body>
 
