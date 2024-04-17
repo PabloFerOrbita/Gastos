@@ -1,16 +1,12 @@
+<button id="buscar">Buscar</button>;
+<button id="listado">Listado</button>;
+<button id="nuevo">Nuevo</button>;
+
+<h1>Ejemplo de Cabecera</h1>;
 <?php
 class Inc_cabecera
 {
-    static function insertarBotones()
-    {
-        echo '<button id="buscar">Buscar</button><br><br>';
-        echo '<button id="listado">Listado</button><br><br>';
-        echo '<button id="nuevo">Nuevo</button><br><br>';
-    }
-    static function cabecera()
-    {
-        echo '<h1>Ejemplo de Cabecera</h1>';
-    }
+
 
     static function conectar()
     {
@@ -33,15 +29,15 @@ class Inc_cabecera
         $query->execute();
         $gastos = $query->fetchAll();
         if (count($gastos) > 0) {
-        echo '<table border=1>';
-        echo '<tr>';
-        echo '<th>Fecha</th><th>Importe</th><th>Descripcion</th>';
-        if (array_key_exists('categoria', $gastos[0])) {
-            echo '<th>Categoria</th>';
-        }
-        echo '<th>Modificar</th>';
-        echo '</tr>';
-      
+            echo '<table border=1>';
+            echo '<tr>';
+            echo '<th>Fecha</th><th>Importe</th><th>Descripcion</th>';
+            if (array_key_exists('categoria', $gastos[0])) {
+                echo '<th>Categoria</th>';
+            }
+            echo '<th>Modificar</th>';
+            echo '</tr>';
+
             foreach ($gastos as $gasto) {
                 echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td>';
                 if (array_key_exists('categoria', $gasto)) {
@@ -57,49 +53,51 @@ class Inc_cabecera
         $con = null;
     }
 
-    static function contar(){
+    static function contar()
+    {
         $con = self::conectar();
         $query = $con->prepare('SELECT COUNT(*) FROM gastos');
         $query->execute();
         $numero =  $query->fetchColumn();
         $con = null;
         return $numero;
-
     }
 
-    static function recibirRegistro($descripcion){
+    static function recibirRegistro($descripcion)
+    {
         $con = self::conectar();
         $query = $con->prepare('SELECT * FROM gastos WHERE descripcion like "' . $descripcion . '"');
         try {
             $query->execute();
             $registro = $query->fetchAll();
             return $registro;
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             return array();
         }
     }
 
-    static function insertar($sql){
+    static function insertar($sql)
+    {
         $con = self::conectar();
         $query = $con->prepare($sql);
         try {
             $query->execute();
             $con = null;
             return '<h3>Se han guardado los datos correctamente';
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             return '<h3>Ha habido un error al guardar los datos</h3> ';
         }
-        
     }
 
-    static function actualizarRegistro($sql){
+    static function actualizarRegistro($sql)
+    {
         $con = self::conectar();
         $query = $con->prepare($sql);
         try {
             $query->execute();
             $con = null;
             return '<h3>Se han editado los datos correctamente';
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             return '<h3>Ha habido un error al editar los datos</h3> ' . $e->getMessage();
         }
     }
