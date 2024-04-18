@@ -40,9 +40,27 @@
     }
     require_once('inc_pie.php');
     ?>
+
     <script>
+        var numero = <?= $registro[0]['importe'] ?>;
         $('#fecha').on('blur', (e)=>{
             !e.target.checkValidity() && $(e.target).val(<?= json_encode($registro[0]['fecha']) ?>); 
+        })
+
+        $('#importe').on('input', (e) => {
+            if (!e.target.checkValidity()) {
+                if (($(e.target).val() === '' && !e.target.validity.badInput)) {
+                    $(e.target).val('');
+                } else if ($(e.target).val() != '0' && $(e.target).val() != '0.0') {
+                    $(e.target).val(numero);
+                }
+            }
+            numero = $(e.target).val();
+
+        })
+
+        $('#importe').on('blur', (e) => {
+            $(e.target).val() == 0 && $(e.target).val(0.01);
         })
         
         $('#categoria').val(<?= json_encode($registro[0]['categoria'])?>)
