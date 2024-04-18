@@ -16,7 +16,7 @@
     <h4>Has elegido la opción Nuevo</h4>
     <?php
     if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
-        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES ("' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] . '", "' . $_POST['categoria'] .  '")');
+        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES (NULL, "' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] . '", "' . $_POST['categoria'] .  '")');
     }
     echo '<form method="POST">';
     echo '<label for="descripcion">Descripcion del gasto</label><br>';
@@ -35,7 +35,6 @@
     require_once('inc_pie.php');
     ?>
     <script>
-        //TODO hacer que si se introduce 0 el valor cambie automáticamente a 0.01
         //TODO modificar el insertar para que sea correcto con el INT de auto incremento
         //TODO mover los métodos a modificar.php
         var numero = 0.01;
