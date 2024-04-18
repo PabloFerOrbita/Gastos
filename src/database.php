@@ -13,13 +13,12 @@ class Database {
     }
 
     /**
-     * Devolver la conexion
+     * Devolver la conexion de la base de datos
      * @return mixed;
      */
     public function conexion(){
         try {
             $conexion = new PDO('mysql:host=' . $this->servidor . '; dbname=' . $this->bd, $this->usuario, $this->contrasenia);
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conexion;
         } catch (PDOException $e) {
             echo $e->getMessage();
