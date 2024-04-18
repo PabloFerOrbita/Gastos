@@ -54,6 +54,10 @@
             numero = $(e.target).val();
 
         })
+
+        $('#importe').on('blur', (e) => {
+            $(e.target).val() == 0 && $(e.target).val(0.01);
+        })
     </script>
 </body>
 
