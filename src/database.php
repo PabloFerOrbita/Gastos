@@ -34,16 +34,29 @@ class Database
      * 
      * @return array|false
      * @param string $tabla
+     * @param array $campos
      * @param int $ID [optional]
      */
-    public function obtener_datos(string $tabla, int $ID = 0) : array
+    public function obtener_datos(string $tabla, array $campos, int $ID = 0): array
     {
         $con = self::conexion();
-        $sql = `SELECT * FROM $tabla`; 
-        if ($ID > 0) {
-            $sql = $sql . ' WHERE ID ' . $ID;
-        } else if ($ID = -1) {
-            return false;
+        if (count($campos) > 0) {
+            $sql = 'SELECT ';
+            $ultimo = array_key_last($campos);
+            foreach ($campos as $indice => $campo) {
+                $sql .= $campo;
+                if ($indice !== $ultimo) {
+                    $sql .= ', ';
+                }
+            }
+
+            $sql .= ' FROM ' . $tabla;
+        } else {
+            return [];
+        }
+
+        if ($ID !== 0) {
+            $sql .= ' WHERE ID =' . $ID;
         }
         $query = $con->prepare($sql);
         try {
@@ -51,9 +64,9 @@ class Database
                 $datos = $query->fetchAll();
                 return $datos;
             }
-            return false;
+            return [];
         } catch (PDOException $e) {
-            return false;
+            return [];
         }
     }
 
@@ -65,7 +78,7 @@ class Database
      * @return bool
      */
 
-    public function eliminar(int $ID, string $tabla) : bool
+    public function eliminar(int $ID, string $tabla): bool
     {
         $con = self::conexion();
         $query = $con->prepare('DELETE FROM ' . $tabla . ' WHERE ID = ' . $ID);
@@ -78,7 +91,4 @@ class Database
             return false;
         }
     }
-
-    
-    
 }
