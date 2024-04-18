@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
- <footer><p>Ejemplo de footer</p></footer>   
+ <footer class="navbar fixed-bottom"><div class="container text-center"><p class="col-12">Mi contabilidad doméstica</p></div></footer>   
 </body>
 </html>
 
