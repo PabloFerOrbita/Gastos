@@ -15,8 +15,7 @@
     //TODO pruebas de todo
     require_once('inc_cabecera.php');
     
-
-    echo '<h3>Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes</h3><br><br>';
+    echo '<h3 class="m-1">Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes</h3>';
 
     require_once('inc_pie.php');
     ?>
