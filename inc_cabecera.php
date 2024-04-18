@@ -23,7 +23,8 @@
     <?php
     class Inc_cabecera
     {
-
+        static $tabla = 'gastos';
+        
 
         static function conectar()
         {
@@ -37,6 +38,7 @@
                 return $conexion;
             } catch (PDOException $e) {
                 echo $e->getMessage();
+                die;
             }
         }
         static function MostrarLista($sql)
@@ -67,16 +69,20 @@
                 echo '<h4>No se han encontrado registros</h4>';
             }
 
-            $con = null;
+
         }
 
-        static function contar()
+        /**
+         * Contar datos
+         * 
+         * @return int
+         */
+        static function contar(): int
         {
             $con = self::conectar();
             $query = $con->prepare('SELECT COUNT(*) FROM gastos');
             $query->execute();
             $numero =  $query->fetchColumn();
-            $con = null;
             return $numero;
         }
 
