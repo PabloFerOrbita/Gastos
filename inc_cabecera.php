@@ -12,12 +12,14 @@
 
 
 
-    <button id="inicio">Inicio</button>
-    <button id="buscar">Buscar</button>
-    <button id="listado">Listado</button>
-    <button id="nuevo">Nuevo</button>
+    <header class="bg-danger p-2">
+        <button id="inicio" class="btn btn-link text-white">Inicio</button>
+        <button id="buscar" class="btn btn-link text-white">Buscar</button>
+        <button id="listado" class="btn btn-link text-white">Listado</button>
+        <button id="nuevo" class="btn btn-link text-white">Nuevo</button>
 
-    <h1>Ejemplo de Cabecera</h1>
+        <h1 class="text-white">Contabilidad</h1>
+    </header>
     <?php
     class Inc_cabecera
     {
