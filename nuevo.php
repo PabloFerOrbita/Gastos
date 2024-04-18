@@ -36,14 +36,14 @@
     ?>
     <script>
         //TODO hacer que si se introduce 0 el valor cambie automáticamente a 0.01
-        //TODO
+        //TODO modificar el insertar para que sea correcto con el INT de auto incremento
+        //TODO mover los métodos a modificar.php
         var numero = 0.01;
         $('#fecha').on('blur', (e) => {
             !e.target.checkValidity() && $(e.target).val("");
         })
 
         $('#importe').on('input', (e) => {
-            console.log(e.target.validity.badInput);
             if (!e.target.checkValidity()) {
                 if (($(e.target).val() === '' && !e.target.validity.badInput)) {
                     $(e.target).val('');
