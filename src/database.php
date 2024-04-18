@@ -13,7 +13,8 @@ class Database {
     }
 
     /**
-     * Devolver la conexion de la base de datos
+     * Devuelve la conexión de la base de datos
+     * 
      * @return mixed;
      */
     public function conexion(){
@@ -25,6 +26,26 @@ class Database {
             die;
         }
     }
+    //TODO terminar obtener_datos
+    public function obtener_datos($tabla, $numero){
+        $con = self::conexion();
+        $query = $con->prepare('SELECT * FROM ' . $tabla);
+        try{
+        if($query->execute()){
+            $datos = $query->fetchAll();
+
+        }
+        
+
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+        
+    }
+
+    
+
+     
 
 }
 ?>
