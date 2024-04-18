@@ -29,17 +29,29 @@ class Database
             die;
         }
     }
-    //TODO terminar obtener_datos
-    public function obtener_datos($tabla, $numero)
+    /**
+     * Obtiene los datos de la tabla escogida
+     * 
+     * @return array|false
+     * @param string $tabla
+     * @param int $ID [optional]
+     */
+    public function obtener_datos(string $tabla, int $ID = 0) : array
     {
         $con = self::conexion();
-        $query = $con->prepare('SELECT * FROM ' . $tabla);
+        $sql = `SELECT * FROM $tabla`; 
+        if ($ID > 0) {
+            $sql = $sql . ' WHERE ID ' . $ID;
+        }
+        $query = $con->prepare($sql);
         try {
             if ($query->execute()) {
                 $datos = $query->fetchAll();
+                return $datos;
             }
+            return false;
         } catch (PDOException $e) {
-            $e->getMessage();
+            return false;
         }
     }
 
