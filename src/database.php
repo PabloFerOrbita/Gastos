@@ -42,6 +42,8 @@ class Database
         $sql = `SELECT * FROM $tabla`; 
         if ($ID > 0) {
             $sql = $sql . ' WHERE ID ' . $ID;
+        } else if ($ID = -1) {
+            return false;
         }
         $query = $con->prepare($sql);
         try {
@@ -76,4 +78,7 @@ class Database
             return false;
         }
     }
+
+    
+    
 }
