@@ -159,9 +159,11 @@ class Database
                 }
                 return null;
             } catch (PDOException $e) {
-                return $e->getMessage();
+                return null;
             }
         }
         return null;
     }
+
+    
 }
