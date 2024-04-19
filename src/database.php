@@ -33,11 +33,18 @@ class Database
      * Obtiene los datos de la tabla escogida
      * 
      * @return array
+     * El método devolverá un array con los campos resultantes de la búsqueda, o 
+     * un array vacío en el caso de no encontrar nada
      * @param string $tabla
+     * La tabla de la que deseas obtener los datos
      * @param array $campos
-     * @param int $ID [optional]
+     * Los campos que deseas obtener
+     * @param string $parametroBusqueda 
+     * [opcional] El campo a partir del cual se quiere filtrar la búsqueda.
+     * @param mixed $valorAbuscar 
+     * [opcional] El valor que el campo por el que se filtra la búsqueda debe tener.
      */
-    public function obtener_datos(string $tabla, array $campos, int $ID = 0): array
+    public function obtener_datos(string $tabla, array $campos, string $parametroBusqueda = '', mixed $valorAbuscar = 0): array
     {
         $con = self::conexion();
         if (count($campos) > 0) {
@@ -55,8 +62,13 @@ class Database
             return [];
         }
 
-        if ($ID !== 0) {
-            $sql .= ' WHERE ID =' . $ID;
+        if ($parametroBusqueda !== '') {
+            $sql .= ' WHERE ' . $parametroBusqueda;
+            if (is_string($parametroBusqueda)) {
+                $sql .= ' like "%' . $valorAbuscar . '%"';
+            } else if (is_int($parametroBusqueda) || is_double($parametroBusqueda)) {
+                $sql .= ' = ' . $valorAbuscar;
+            }
         }
         $query = $con->prepare($sql);
         try {
