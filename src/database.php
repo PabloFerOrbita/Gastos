@@ -29,6 +29,8 @@ class Database
             die;
         }
     }
+
+    
     /**
      * Obtiene los datos de la tabla escogida
      * 
@@ -42,9 +44,9 @@ class Database
      * @param string $parametroBusqueda 
      * [opcional] El campo a partir del cual se quiere filtrar la búsqueda.
      * @param mixed $valorAbuscar 
-     * [opcional] El valor que el campo por el que se filtra la búsqueda debe tener.
+     * [opcional] El valor que el campo por el que se filtra la búsqueda debe tener. 
      */
-    public function obtener_datos(string $tabla, array $campos, string $parametroBusqueda = '', mixed $valorAbuscar = 0): array
+    public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = 0): array
     {
         $con = self::conexion();
         if (count($campos) > 0) {
@@ -104,6 +106,18 @@ class Database
             return false;
         } catch (PDOException $e) {
             return false;
+        }
+    }
+
+    public function modificar(string $tabla, int $ID, array $camposAmodificar, array $valoresNuevos)
+    {
+        $con = self::conexion();
+        $sql = 'UPDATE ' . $tabla . ' SET ';
+        if (count($camposAmodificar) == count($valoresNuevos)) {
+            $ultimo_indice = array_key_last($camposAmodificar);
+            foreach ($camposAmodificar as $indice => $campo) {
+            $sql .= $campo . ' = ' . $valoresNuevos[$indice];
+            }
         }
     }
 }
