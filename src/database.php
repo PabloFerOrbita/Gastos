@@ -32,7 +32,7 @@ class Database
     /**
      * Obtiene los datos de la tabla escogida
      * 
-     * @return array|false
+     * @return array
      * @param string $tabla
      * @param array $campos
      * @param int $ID [optional]
