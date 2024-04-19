@@ -86,8 +86,11 @@ class Database
      * Eliminar el registro correspondiente
      * 
      * @param int $ID
+     * El id del registro que se desea eliminar
      * @param string $tabla
+     * La tabla de la cual se desea eliminar el registro
      * @return bool
+     * devolverá true si el registro se ha eliminado, false si no.
      */
 
     public function eliminar(int $ID, string $tabla): bool
