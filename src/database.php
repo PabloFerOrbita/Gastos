@@ -40,7 +40,7 @@ class Database
      * @param string $tabla
      * La tabla de la que deseas obtener los datos
      * @param array $campos
-     * Los campos que deseas obtener
+     * [opcional] Los campos que deseas obtener, si está vacío se buscaran todos los campos
      * @param string $parametroBusqueda 
      * [opcional] El campo a partir del cual se quiere filtrar la búsqueda.
      * @param mixed $valorAbuscar 
