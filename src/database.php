@@ -110,7 +110,7 @@ class Database
 
     /**
      * Modifica los valores deseados de la tabla indicada
-     * @return bool|NULL
+     * @return null|bool
      * Devuelve true si se ha modificado algún parámetro, false si ningún registro se ha visto afectado y NULL si ha habido un error.
      * @param string $tabla
      * La tabla de la cual se quieren modificar los valores
@@ -125,7 +125,7 @@ class Database
      * [opcional] el valor que el campo del registro que se quiere modificar debe tener según el parámetro de búsqueda.
      */
 
-    public function modificar(string $tabla, array $camposAmodificar, array $valoresNuevos, string $parametroBusqueda = '', mixed $valorAbuscar = 0): bool|NULL
+    public function modificar(string $tabla, array $camposAmodificar, array $valoresNuevos, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
     {
         $con = self::conexion();
         $sql = 'UPDATE ' . $tabla . ' SET ';
