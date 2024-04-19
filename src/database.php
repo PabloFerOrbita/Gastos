@@ -46,29 +46,31 @@ class Database
      * @param mixed $valorAbuscar 
      * [opcional] El valor que el campo por el que se filtra la búsqueda debe tener. 
      */
-    public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = 0): array
+    public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = ''): array
     {
         $con = self::conexion();
         $sql = 'SELECT ';
         if (count($campos) > 0) {
-            $ultimo = array_key_last($campos);
-            foreach ($campos as $indice => $campo) {
-                $sql .= $campo;
-                if ($indice !== $ultimo) {
-                    $sql .= ', ';
-                }
-            }
+            $sql .= implode(',', $campos);
         } else {
             $sql .= '*';
         }
         $sql .= ' FROM ' . $tabla;
 
         if ($parametroBusqueda !== '') {
-            $sql .= ' WHERE ' . $parametroBusqueda;
-            if (is_string($valorAbuscar)) {
-                $sql .= ' like "%' . $valorAbuscar . '%"';
-            } else if (is_int($valorAbuscar) || is_double($valorAbuscar)) {
+            if (is_numeric($valorAbuscar)) {
+                $sql .= ' WHERE ' . $parametroBusqueda;
                 $sql .= ' = ' . $valorAbuscar;
+            } elseif (is_string($valorAbuscar)) {
+                $sql .= ' WHERE ' . $parametroBusqueda;
+                $sql .= ' like "%' . $valorAbuscar . '%"';
+            } else if (is_bool($valorAbuscar)) {
+                $sql .= ' WHERE ' . $parametroBusqueda;
+                if ($valorAbuscar) {
+                    $sql .= ' = 0';
+                } else {
+                    $sql .= ' = 1';
+                }
             }
         }
         $query = $con->prepare($sql);
@@ -125,28 +127,36 @@ class Database
      * [opcional] el valor que el campo del registro que se quiere modificar debe tener según el parámetro de búsqueda.
      */
 
-    public function modificar(string $tabla, array $camposAmodificar, array $valoresNuevos, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
+    public function modificar(string $tabla, array $camposAmodificar, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
     {
         $con = self::conexion();
-        $sql = 'UPDATE ' . $tabla . ' SET ';
-        if ((count($camposAmodificar) == count($valoresNuevos)) && (array_keys($camposAmodificar) == array_keys($valoresNuevos))) {
+        //TODO con un array
+        if (count($camposAmodificar) > 0) {
+            $sql = 'UPDATE ' . $tabla . ' SET ';
             $ultimo_indice = array_key_last($camposAmodificar);
             foreach ($camposAmodificar as $indice => $campo) {
-                if (is_string($valoresNuevos[$indice])) {
-                    $sql .= $campo . ' = "' . $valoresNuevos[$indice] . '"';
-                } else if (is_double($valoresNuevos[$indice]) || $valoresNuevos[$indice]) {
+                if (is_bool($valoresNuevos[$indice])) {
+                    if ($valoresNuevos[$indice]) {
+                        $sql .= $campo . ' = 1';
+                    } else {
+                        $sql .= $campo . ' = 0';
+                    }
+                } elseif (is_numeric($valorAbuscar)) {
                     $sql .= $campo . ' = ' . $valoresNuevos[$indice];
+                } else if (is_string($valoresNuevos[$indice])) {
+                    $sql .= $campo . ' = "' . $valoresNuevos[$indice] . '"';
                 }
                 if ($indice !== $ultimo_indice) {
                     $sql .= ', ';
                 }
             }
             if ($parametroBusqueda !== '') {
-                $sql .= ' WHERE ' . $parametroBusqueda;
-                if (is_string($valorAbuscar)) {
-                    $sql .= ' like "' . $valorAbuscar . '"';
-                } else if (is_int($valorAbuscar) || is_double($valorAbuscar)) {
+                if (is_numeric($valorAbuscar)) {
+                    $sql .= ' WHERE ' . $parametroBusqueda;
                     $sql .= ' = ' . $valorAbuscar;
+                } elseif (is_string($valorAbuscar)) {
+                    $sql .= ' WHERE ' . $parametroBusqueda;
+                    $sql .= ' like "%' . $valorAbuscar . '%"';
                 }
             }
             $query = $con->prepare($sql);
@@ -165,5 +175,29 @@ class Database
         return null;
     }
 
-    
+    public function obtener_total(string $tabla, string $campo, string $parametroBusqueda = '', mixed $valorAbuscar = 0)
+    {
+        $con = self::conexion();
+        $sql = 'SELECT SUM(' . $campo . ') as total FROM ' . $tabla;
+        if ($parametroBusqueda !== '') {
+            $sql .= ' WHERE ' . $parametroBusqueda;
+            if (is_string($valorAbuscar)) {
+                $sql .= ' like "' . $valorAbuscar . '"';
+            } else if (is_int($valorAbuscar) || is_double($valorAbuscar)) {
+                $sql .= ' = ' . $valorAbuscar;
+            }
+        }
+
+        $query = $con->prepare($sql);
+        try {
+            if ($query->execute()) {
+
+                $datos = $query->fetchColumn();
+                return $datos;
+            }
+            return null;
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
 }
