@@ -30,7 +30,7 @@ class Database
         }
     }
 
-    
+
     /**
      * Obtiene los datos de la tabla escogida
      * 
@@ -49,8 +49,8 @@ class Database
     public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = 0): array
     {
         $con = self::conexion();
+        $sql = 'SELECT ';
         if (count($campos) > 0) {
-            $sql = 'SELECT ';
             $ultimo = array_key_last($campos);
             foreach ($campos as $indice => $campo) {
                 $sql .= $campo;
@@ -58,17 +58,16 @@ class Database
                     $sql .= ', ';
                 }
             }
-
-            $sql .= ' FROM ' . $tabla;
         } else {
-            return [];
+            $sql .= '*';
         }
+        $sql .= ' FROM ' . $tabla;
 
         if ($parametroBusqueda !== '') {
             $sql .= ' WHERE ' . $parametroBusqueda;
-            if (is_string($parametroBusqueda)) {
+            if (is_string($valorAbuscar)) {
                 $sql .= ' like "%' . $valorAbuscar . '%"';
-            } else if (is_int($parametroBusqueda) || is_double($parametroBusqueda)) {
+            } else if (is_int($valorAbuscar) || is_double($valorAbuscar)) {
                 $sql .= ' = ' . $valorAbuscar;
             }
         }
@@ -78,9 +77,9 @@ class Database
                 $datos = $query->fetchAll();
                 return $datos;
             }
-            return [];
+            return ['Error' => 'Fallo al ejecutar la sentencia'];
         } catch (PDOException $e) {
-            return [];
+            return ['Error' => $e->getMessage()];
         }
     }
 
@@ -116,7 +115,7 @@ class Database
         if (count($camposAmodificar) == count($valoresNuevos)) {
             $ultimo_indice = array_key_last($camposAmodificar);
             foreach ($camposAmodificar as $indice => $campo) {
-            $sql .= $campo . ' = ' . $valoresNuevos[$indice];
+                $sql .= $campo . ' = ' . $valoresNuevos[$indice];
             }
         }
     }
