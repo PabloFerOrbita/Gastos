@@ -189,14 +189,13 @@ class Database
                 $sql .= ' WHERE ' . $parametroBusqueda;
                 $sql .= $valorAbuscar . ' = ' . (int) $valorAbuscar;
             }
-            if (is_numeric($valorAbuscar)) {
+            else if (is_numeric($valorAbuscar)) {
                 $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
             }
-            if (is_string($valorAbuscar)) {
+            else if (is_string($valorAbuscar)) {
                 $sql .= ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
             }
         }
-
         $query = $con->prepare($sql);
         try {
             if ($query->execute()) {
