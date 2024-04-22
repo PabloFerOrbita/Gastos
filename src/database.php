@@ -122,11 +122,7 @@ class Database
             $ultimo_indice = array_key_last($camposAmodificar);
             foreach ($camposAmodificar as $indice => $campo) {
                 if (is_bool($campo)) {
-                    if ($campo) {
-                        $sql .= $indice . ' = 1';
-                    } else {
-                        $sql .= $indice . ' = 0';
-                    }
+                    $sql .= $indice . ' = ' . (int) $campo;
                 } elseif (is_numeric($campo)) {
                     $sql .= $indice . ' = ' . $campo;
                 } else if (is_string($campo)) {
