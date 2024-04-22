@@ -60,7 +60,7 @@
                 echo '</thead>';
                 echo '<tbody>';
                 foreach ($gastos as $gasto) {
-                    echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td>';
+                    echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['importe'] . ' </td><td> ' . str_replace('<', '&lt;', str_replace('>', '&gt;', $gasto['descripcion'])) . ' </td>';
                     if (array_key_exists('categoria', $gasto)) {
                         echo '<td> ' . $gasto['categoria'] . ' </td>';
                     }
@@ -110,9 +110,8 @@
                 
                 return '<div class="p-3 m-3 bg-success-subtle"><h3>Se han guardado los datos correctamente</h3></div>';
             } catch (PDOException $e) {
-                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al guardar los datos</h3></div> ' . $e->getMessage();
+                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al guardar los datos</h3></div> ';
             }
-            //TODO controlar espacios en blanco
         }
 
         static function actualizarRegistro($sql)
