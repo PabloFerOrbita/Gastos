@@ -24,7 +24,7 @@
     class Inc_cabecera
     {
         static $tabla = 'gastos';
-        
+
 
         static function conectar()
         {
@@ -48,7 +48,8 @@
             $query->execute();
             $gastos = $query->fetchAll();
             if (count($gastos) > 0) {
-                echo '<table border=1>';
+                echo '<table class="table table-striped table-bordered">';
+                echo '<thead>';
                 echo '<tr>';
                 echo '<th>Fecha</th><th>Importe</th><th>Descripcion</th>';
                 if (array_key_exists('categoria', $gastos[0])) {
@@ -56,7 +57,8 @@
                 }
                 echo '<th>Modificar</th>';
                 echo '</tr>';
-
+                echo '</thead>';
+                echo '<tbody>';
                 foreach ($gastos as $gasto) {
                     echo '<tr><td> ' . self::AMDaDMA($gasto['fecha']) . ' </td><td> ' . $gasto['importe'] . ' </td><td> ' . $gasto['descripcion'] . ' </td>';
                     if (array_key_exists('categoria', $gasto)) {
@@ -64,12 +66,11 @@
                     }
                     echo '<td> <a type="button" href="modificar.php?ID=' . $gasto['ID'] . '">Modificar</a> </td></tr>';
                 }
+                echo '</tbody>';
                 echo '</table>';
             } else {
                 echo '<h4>No se han encontrado registros</h4>';
             }
-
-
         }
 
         /**
