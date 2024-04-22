@@ -16,16 +16,18 @@
     <div class="vh-100">
         <h4 class="m-2">Has elegido la opción Nuevo</h4>
         <?php
+        
         if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
             echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . $_POST['descripcion'] . "', '" . $_POST['categoria'] .  "')");
         }
+        
         echo '<div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">';
         echo '<div class="col-3 border border-2 p-5 border-danger">';
         echo '<form method="POST">';
         echo '<div class = "mb-3 row g-2">';
         echo '<div class="col-12">';
         echo '<label for="descripcion" class="form-label">Descripcion del gasto</label>';
-        echo '<input type ="text" id="descripcion" name="descripcion" class="form-control" pattern="/^(?!\s).++(?<!\s)$/gm" required></input>';
+        echo '<input type ="text" id="descripcion" name="descripcion" class="form-control" pattern="^[^\s]+.*$" required></input>';
         echo '</div>';
         echo '</div>';
         echo '<div class= "mb-3 row g-2 ">';
@@ -61,6 +63,7 @@
         //TODO modificar el insertar para que sea correcto con el INT de auto incremento
         //TODO mover los métodos a modificar.php
         var numero = 0.01;
+        console.log(/^(?![\s-])[\w\s-]+$/.test(" "));
         $('#fecha').on('blur', (e) => {
             !e.target.checkValidity() && $(e.target).val("");
         })
