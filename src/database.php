@@ -193,7 +193,7 @@ class Database
                 $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
             }
             if (is_string($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda . ' like "' . $valorAbuscar . '"';;
+                $sql .= ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
             }
         }
 
