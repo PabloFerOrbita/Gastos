@@ -13,11 +13,15 @@
     require_once('inc_cabecera.php');
     ?>
     <div class="m-2">
-    <h4 class="mb-5">Has elegido la opción Listado</h4>
-    <?php
-    Inc_cabecera::MostrarLista('SELECT ID, fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
-    require_once('inc_pie.php');
-    ?>
+        <h4 class="mb-5">Has elegido la opción Listado</h4>
+        <div class="container-fluid vh-100">
+            <div class="h-50 overflow-auto">
+                <?php
+                Inc_cabecera::MostrarLista('SELECT ID, fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
+                require_once('inc_pie.php');
+                ?>
+            </div>
+        </div>
     </div>
 </body>
 
