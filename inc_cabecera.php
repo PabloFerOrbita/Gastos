@@ -37,7 +37,7 @@
                 $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $conexion;
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                echo '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al conectarse a la base de datos</h3></div> ';
                 die;
             }
         }
@@ -107,9 +107,10 @@
             try {
                 $query->execute();
                 $con = null;
-                return '<h3>Se han guardado los datos correctamente';
+                
+                return '<div class="p-3 m-3 bg-success-subtle"><h3>Se han guardado los datos correctamente</h3></div>';
             } catch (PDOException $e) {
-                return '<h3>Ha habido un error al guardar los datos</h3> ';
+                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al guardar los datos</h3></div> ';
             }
         }
 
@@ -120,9 +121,9 @@
             try {
                 $query->execute();
                 $con = null;
-                return '<h3>Se han editado los datos correctamente';
+                return '<div class="p-3 m-3 bg-success-subtle"><h3>Se han editado los datos correctamente</h3></div>';
             } catch (PDOException $e) {
-                return '<h3>Ha habido un error al editar los datos</h3> ' . $e->getMessage();
+                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al editar los datos</h3></div>';
             }
         }
 
