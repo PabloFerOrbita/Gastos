@@ -130,21 +130,20 @@ class Database
     public function modificar(string $tabla, array $camposAmodificar, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
     {
         $con = self::conexion();
-        //TODO con un array
         if (count($camposAmodificar) > 0) {
             $sql = 'UPDATE ' . $tabla . ' SET ';
             $ultimo_indice = array_key_last($camposAmodificar);
             foreach ($camposAmodificar as $indice => $campo) {
-                if (is_bool($valoresNuevos[$indice])) {
-                    if ($valoresNuevos[$indice]) {
-                        $sql .= $campo . ' = 1';
+                if (is_bool($campo)) {
+                    if ($campo) {
+                        $sql .= $indice . ' = 1';
                     } else {
-                        $sql .= $campo . ' = 0';
+                        $sql .= $indice . ' = 0';
                     }
-                } elseif (is_numeric($valorAbuscar)) {
-                    $sql .= $campo . ' = ' . $valoresNuevos[$indice];
-                } else if (is_string($valoresNuevos[$indice])) {
-                    $sql .= $campo . ' = "' . $valoresNuevos[$indice] . '"';
+                } elseif (is_numeric($campo)) {
+                    $sql .= $indice . ' = ' . $campo;
+                } else if (is_string($campo)) {
+                    $sql .= $indice . ' = "' . $campo . '"';
                 }
                 if ($indice !== $ultimo_indice) {
                     $sql .= ', ';
@@ -159,6 +158,7 @@ class Database
                     $sql .= ' like "%' . $valorAbuscar . '%"';
                 }
             }
+            echo $sql;
             $query = $con->prepare($sql);
             try {
                 if ($query->execute()) {
