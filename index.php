@@ -11,8 +11,16 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
+    $cuenta = Inc_cabecera::contar();
     
-    echo '<h3 class="m-1">Bienvenido a mi contabilidad doméstica, actualmente hay ' . Inc_cabecera::contar() . ' gastos existentes</h3>';
+    echo '<h3 class="m-1">Bienvenido a mi contabilidad doméstica, actualmente hay ' . $cuenta;
+    if($cuenta != 1){
+        echo ' gastos existentes';
+    } else{
+        echo ' gasto existente';
+    }
+    echo '</h3>';
+
 
     require_once('inc_pie.php');
     ?>
