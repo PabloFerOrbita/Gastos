@@ -198,8 +198,7 @@ class Database
         $sql = 'SELECT COUNT(*) as total FROM ' . $tabla;
         if ($parametroBusqueda !== '') {
             if (is_bool($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda;
-                $sql .= $valorAbuscar . ' = ' . (int) $valorAbuscar;
+                $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
             }
             else if (is_numeric($valorAbuscar)) {
                 $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
