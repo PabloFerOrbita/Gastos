@@ -159,11 +159,9 @@ class Database
                     }
                 }
                 if (is_numeric($valorAbuscar)) {
-                    $sql .= ' WHERE ' . $parametroBusqueda;
-                    $sql .= ' = ' . $valorAbuscar;
+                    $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
                 } elseif (is_string($valorAbuscar)) {
-                    $sql .= ' WHERE ' . $parametroBusqueda;
-                    $sql .= ' like "%' . $valorAbuscar . '%"';
+                    $sql .= ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';
                 }
             }
             $query = $con->prepare($sql);
