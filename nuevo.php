@@ -13,27 +13,50 @@
     require_once('inc_cabecera.php');
 
     ?>
-    <h4>Has elegido la opción Nuevo</h4>
-    <?php
-    if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
-        echo Inc_cabecera::insertar('INSERT INTO gastos VALUES (NULL, "' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] . '", "' . $_POST['categoria'] .  '")');
-    }
-    echo '<form method="POST">';
-    echo '<label for="descripcion">Descripcion del gasto</label><br>';
-    echo '<textarea id="descripcion" name="descripcion" required></textarea><br><br>';
-    echo '<label for="importe" required>Importe del gasto</label><br>';
-    echo '<input type="number" name="importe" min="0.01" id="importe"  max="99999999" step="0.01" required></input><br><br>';
-    echo '<label for="fecha">Fecha del gasto</label><br>';
-    echo '<input type="date" name="fecha" id="fecha"  required></input><br><br>';
-    echo '<label for="categoria">Categoria del gasto</label><br>';
-    echo '<select name="categoria" id="categoria" required>
+    <div class="vh-100">
+        <h4 class="m-2">Has elegido la opción Nuevo</h4>
+        <?php
+        if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
+            echo Inc_cabecera::insertar('INSERT INTO gastos VALUES (NULL, "' . $_POST['fecha'] . '", ' . $_POST['importe'] . ', "' . $_POST['descripcion'] . '", "' . $_POST['categoria'] .  '")');
+        }
+        echo '<div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">';
+        echo '<div class="col-3 border border-2 p-5 border-danger">';
+        echo '<form method="POST">';
+        echo '<div class = "mb-3 row g-2">';
+        echo '<div class="col-12">';
+        echo '<label for="descripcion" class="form-label">Descripcion del gasto</label>';
+        echo '<textarea id="descripcion" name="descripcion" class="form-control" required></textarea>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class= "mb-3 row g-2 ">';
+        echo '<div class="col-6">';
+        echo '<label for="importe" class="form-label" required>Importe del gasto</label>';
+        echo '<input type="number" name="importe" min="0.01" id="importe"  max="99999999" step="0.01" class="form-control" required></input>';
+        echo '</div>';
+        echo '<div class ="col-6">';
+        echo '<label for="categoria" class="form-label">Categoria del gasto</label><br>';
+        echo '<select name="categoria" id="categoria" class="form-control " required>
     <option value=""  disabled selected >Elige una opción</option>
     <option value="telefono">Telefono</option>
     <option value="ocio">Ocio</option>
-    </select><br><br>';
-    echo '<button type="submit">Guardar</button>';
-    require_once('inc_pie.php');
-    ?>
+    </select>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class ="mb-3 row g-2">';
+        echo '<div class = "col-12">';
+        echo '<label for="fecha" class="form-label">Fecha del gasto</label>';
+        echo '<input type="date" name="fecha" id="fecha" class="form-control" required></input>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="col-12">';
+        echo '<button type="submit" class="btn btn-danger w-100">Guardar</button>';
+        echo '</div>';
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+        require_once('inc_pie.php');
+        ?>
+    </div>
     <script>
         //TODO modificar el insertar para que sea correcto con el INT de auto incremento
         //TODO mover los métodos a modificar.php
