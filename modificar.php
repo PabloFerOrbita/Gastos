@@ -17,7 +17,7 @@
     <div class="vh-100">
         <?php
         if (isset($_POST['editar'])) {
-            echo Inc_cabecera::actualizarRegistro('UPDATE gastos SET fecha = "' . $_POST['fecha'] . '", descripcion = "' . implode(" ", explode("+", $_POST['descripcion'])) . '", categoria = "' . $_POST['categoria'] . '", importe = ' . $_POST['importe'] . ' WHERE ID = ' . $_POST['editar']);
+            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . implode(" ", explode("+", $_POST['descripcion'])) . "', categoria = '" . $_POST['categoria'] . "', importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
         }
         if (isset($_GET['ID'])) {
             $registro = Inc_cabecera::recibirRegistro($_GET['ID']);
@@ -63,6 +63,9 @@
                 echo '<div class="col-3 p-5 text-center">';
                 echo '<h4>El registro no existe</h4>';
             }
+        } else {
+            echo '<div class="col-3 p-5 text-center">';
+            echo '<h4>El registro no existe</h4>';
         }
         ?>
     </div>
