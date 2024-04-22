@@ -25,7 +25,7 @@ class Database
             $conexion = new PDO('mysql:host=' . $this->servidor . '; dbname=' . $this->bd, $this->usuario, $this->contrasenia);
             return $conexion;
         } catch (PDOException $e) {
-            echo $e->getMessage();
+            echo 'Error al conectarse a la base de datos';
             die;
         }
     }
