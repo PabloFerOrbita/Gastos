@@ -58,20 +58,7 @@ class Database
         $sql .= ' FROM ' . $tabla;
 
         if ($parametroBusqueda !== '') {
-            if (is_numeric($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda;
-                $sql .= ' = ' . $valorAbuscar;
-            } elseif (is_string($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda;
-                $sql .= ' like "%' . $valorAbuscar . '%"';
-            } else if (is_bool($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda;
-                if ($valorAbuscar) {
-                    $sql .= ' = 0';
-                } else {
-                    $sql .= ' = 1';
-                }
-            }
+            $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
         }
         $query = $con->prepare($sql);
         try {
@@ -150,19 +137,7 @@ class Database
                 }
             }
             if ($parametroBusqueda !== '') {
-                if (is_bool($valorAbuscar)) {
-                    $sql .= ' WHERE ' . $parametroBusqueda;
-                    if ($valorAbuscar) {
-                        $sql .= $indice . ' = 1';
-                    } else {
-                        $sql .= $indice . ' = 0';
-                    }
-                }
-                if (is_numeric($valorAbuscar)) {
-                    $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
-                } elseif (is_string($valorAbuscar)) {
-                    $sql .= ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';
-                }
+                $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
             }
             $query = $con->prepare($sql);
             try {
@@ -179,7 +154,7 @@ class Database
         }
         return null;
     }
-    
+
     /**
      * Obtiene el total de registros en la tabla especificada
      * 
@@ -192,20 +167,12 @@ class Database
      * @param mixed $valorAbuscar
      * [opcional] El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
      */
-    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0) : ?int
+    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?int
     {
         $con = self::conexion();
         $sql = 'SELECT COUNT(*) as total FROM ' . $tabla;
         if ($parametroBusqueda !== '') {
-            if (is_bool($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
-            }
-            else if (is_numeric($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
-            }
-            else if (is_string($valorAbuscar)) {
-                $sql .= ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
-            }
+            $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
         }
         $query = $con->prepare($sql);
         try {
@@ -220,9 +187,30 @@ class Database
         }
     }
 
-    //TODO poner la búsqueda en una sola
 
-    
-    
+    /**
+     * Añade el WHERE a la sentencia sql correspondiente según el tipo de valor que se utilice
+     * 
+     * @return string
+     * Devuelve el string que se debe añadir a la sentencia sql para poder filtrar los resultados
+     * @param string $parametroBusqueda
+     * El campo a partir del cual se quiere filtrar la búsqueda
+     * @param mixed $valorAbuscar
+     *  El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
+     */
 
+    public function busqueda(string $parametroBusqueda, mixed $valorAbuscar)
+    {
+        if (is_bool($valorAbuscar)) {
+            return ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
+        }
+        if (is_numeric($valorAbuscar)) {
+            return ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
+        }
+        if (is_string($valorAbuscar)) {
+            return ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
+        }
+
+        return '';
+    }
 }
