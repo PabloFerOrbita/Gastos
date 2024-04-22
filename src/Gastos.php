@@ -29,7 +29,7 @@ class Gastos
      * Devolverá true si el registro se ha eliminado, false si no o null si ha habido algún error
      * 
      */
-    public function eliminar_gasto(int $ID) : ?bool
+    public function eliminar_gasto(int $ID): ?bool
     {
         return $this->db->eliminar($ID, $this->tabla);
     }
@@ -42,8 +42,31 @@ class Gastos
      * Devuelve un array con los datos del registro obtenido
      */
 
-    public function obtener_gasto(int $ID) : array
+    public function obtener_gasto(int $ID): array
     {
         return $this->db->obtener_datos($this->tabla, [], 'ID', $ID);
+    }
+
+    /**
+     * Obtiene el total de todos los gastos
+     * @return null|float
+     * Devuelve un float con el total de todos los gastos, o null en caso de error
+     */
+
+    public function obtener_gasto_total() : ?float
+    {
+        $con = $this->db->conexion();
+        $sql = 'SELECT SUM(importe) FROM ' . $this->tabla;
+        $query = $con->prepare($sql);
+        try {
+            if ($query->execute()) {
+
+                $datos = $query->fetchColumn();
+                return $datos;
+            }
+            return null;
+        } catch (PDOException $e) {
+            return null;
+        }
     }
 }
