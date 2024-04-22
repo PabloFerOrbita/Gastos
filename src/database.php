@@ -79,21 +79,24 @@ class Database
      * El id del registro que se desea eliminar
      * @param string $tabla
      * La tabla de la cual se desea eliminar el registro
-     * @return bool
-     * devolverá true si el registro se ha eliminado, false si no.
+     * @return null|bool
+     * devolverá true si el registro se ha eliminado, false si no o null si ha habido algún error
      */
 
-    public function eliminar(int $ID, string $tabla): bool
+    public function eliminar(int $ID, string $tabla): ?bool
     {
         $con = self::conexion();
         $query = $con->prepare('DELETE FROM ' . $tabla . ' WHERE ID = ' . $ID);
         try {
             if ($query->execute()) {
+                if ($query->rowCount() == 0) {
+                    return false;
+                }
                 return true;
             }
-            return false;
+            return null;
         } catch (PDOException $e) {
-            return false;
+            return null;
         }
     }
 
