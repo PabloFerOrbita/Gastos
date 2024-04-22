@@ -25,7 +25,7 @@
         echo '<div class = "mb-3 row g-2">';
         echo '<div class="col-12">';
         echo '<label for="descripcion" class="form-label">Descripcion del gasto</label>';
-        echo '<textarea id="descripcion" name="descripcion" class="form-control" required></textarea>';
+        echo '<input type ="text" id="descripcion" name="descripcion" class="form-control" pattern="/^(?!\s).++(?<!\s)$/gm" required></input>';
         echo '</div>';
         echo '</div>';
         echo '<div class= "mb-3 row g-2 ">';

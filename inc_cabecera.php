@@ -112,7 +112,6 @@
             } catch (PDOException $e) {
                 return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al guardar los datos</h3></div> ' . $e->getMessage();
             }
-            //TODO error al guardar un string con comillas
             //TODO controlar espacios en blanco
         }
 
