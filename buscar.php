@@ -14,6 +14,7 @@
     ?>
     <div class="m-2">
         <h4 class="mb-3">Has elegido la opción Buscar</h4>
+
         <?php
         echo '<form method="GET" id="formulario">';
         echo '<div class="row g-3 align-items-center">';
@@ -25,11 +26,17 @@
         echo '</div>';
         echo '</div>';
         echo '</form><br>';
-        if (isset($_GET['busqueda'])) {
-            Inc_cabecera::MostrarLista("SELECT * FROM gastos WHERE descripcion like '%" . str_replace("'", "''", trim($_GET['busqueda'])) . "%' ORDER BY fecha DESC");
-        }
-        require_once('inc_pie.php');
         ?>
+        <div class="container-fluid vh-100">
+            <div class="h-50 overflow-auto">
+                <?php
+                if (isset($_GET['busqueda'])) {
+                    Inc_cabecera::MostrarLista("SELECT * FROM gastos WHERE descripcion like '%" . str_replace("'", "''", trim($_GET['busqueda'])) . "%' ORDER BY fecha DESC");
+                }
+                require_once('inc_pie.php');
+                ?>
+            </div>
+        </div>
     </div>
 
     <script>
