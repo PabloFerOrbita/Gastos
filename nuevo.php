@@ -60,8 +60,6 @@
         ?>
     </div>
     <script>
-        //TODO modificar el insertar para que sea correcto con el INT de auto incremento
-        //TODO mover los métodos a modificar.php
         var numero = 0.01;
         console.log(/^(?![\s-])[\w\s-]+$/.test(" "));
         $('#fecha').on('blur', (e) => {
