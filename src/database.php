@@ -150,9 +150,9 @@ class Database
                 }
             }
             if ($parametroBusqueda !== '') {
-                if(is_bool($valorAbuscar)){
+                if (is_bool($valorAbuscar)) {
                     $sql .= ' WHERE ' . $parametroBusqueda;
-                    if ($valorAbuscar){
+                    if ($valorAbuscar) {
                         $sql .= $indice . ' = 1';
                     } else {
                         $sql .= $indice . ' = 0';
@@ -180,16 +180,20 @@ class Database
         return null;
     }
 
-    public function obtener_total(string $tabla, string $campo, string $parametroBusqueda = '', mixed $valorAbuscar = 0)
+    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0)
     {
         $con = self::conexion();
-        $sql = 'SELECT SUM(' . $campo . ') as total FROM ' . $tabla;
+        $sql = 'SELECT COUNT(*) as total FROM ' . $tabla;
         if ($parametroBusqueda !== '') {
-            $sql .= ' WHERE ' . $parametroBusqueda;
+            if (is_bool($valorAbuscar)) {
+                $sql .= ' WHERE ' . $parametroBusqueda;
+                $sql .= $valorAbuscar . ' = ' . (int) $valorAbuscar;
+            }
+            if (is_numeric($valorAbuscar)) {
+                $sql .= ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
+            }
             if (is_string($valorAbuscar)) {
-                $sql .= ' like "' . $valorAbuscar . '"';
-            } else if (is_int($valorAbuscar) || is_double($valorAbuscar)) {
-                $sql .= ' = ' . $valorAbuscar;
+                $sql .= ' WHERE ' . $parametroBusqueda . ' like "' . $valorAbuscar . '"';;
             }
         }
 
@@ -205,4 +209,8 @@ class Database
             return null;
         }
     }
+
+    //TODO poner la búsqueda en una sola
+    
+
 }
