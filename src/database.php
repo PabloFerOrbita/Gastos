@@ -179,8 +179,20 @@ class Database
         }
         return null;
     }
-
-    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0)
+    
+    /**
+     * Obtiene el total de registros en la tabla especificada
+     * 
+     * @return null|int
+     * Devuelve el un int con el total de tablas en caso de funcionar todo o NULL en caso de haber algún error
+     * @param string $tabla
+     * La tabla de la cual quieres obtener el total
+     * @param string $parametroBusqueda
+     * [opcional] El campo a partir del cual se quiere filtrar la búsqueda
+     * @param mixed $valorAbuscar
+     * [opcional] El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
+     */
+    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0) : ?int
     {
         $con = self::conexion();
         $sql = 'SELECT COUNT(*) as total FROM ' . $tabla;
@@ -210,6 +222,8 @@ class Database
     }
 
     //TODO poner la búsqueda en una sola
+
+    
     
 
 }
