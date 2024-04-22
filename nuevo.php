@@ -37,8 +37,8 @@
         echo '<label for="categoria" class="form-label">Categoria del gasto</label><br>';
         echo '<select name="categoria" id="categoria" class="form-control " required>
     <option value=""  disabled selected >Elige una opción</option>
-    <option value="telefono">Telefono</option>
-    <option value="ocio">Ocio</option>
+    <option value="Telefono">Telefono</option>
+    <option value="Ocio">Ocio</option>
     </select>';
         echo '</div>';
         echo '</div>';
