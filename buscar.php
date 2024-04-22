@@ -26,7 +26,7 @@
         echo '</div>';
         echo '</form><br>';
         if (isset($_GET['busqueda'])) {
-            Inc_cabecera::MostrarLista("SELECT * FROM gastos WHERE descripcion like '%" . trim($_GET['busqueda']) . "%' ORDER BY fecha DESC");
+            Inc_cabecera::MostrarLista("SELECT * FROM gastos WHERE descripcion like '%" . str_replace("'", "''", trim($_GET['busqueda'])) . "%' ORDER BY fecha DESC");
         }
         require_once('inc_pie.php');
         ?>
