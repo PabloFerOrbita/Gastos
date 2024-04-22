@@ -150,6 +150,14 @@ class Database
                 }
             }
             if ($parametroBusqueda !== '') {
+                if(is_bool($valorAbuscar)){
+                    $sql .= ' WHERE ' . $parametroBusqueda;
+                    if ($valorAbuscar){
+                        $sql .= $indice . ' = 1';
+                    } else {
+                        $sql .= $indice . ' = 0';
+                    }
+                }
                 if (is_numeric($valorAbuscar)) {
                     $sql .= ' WHERE ' . $parametroBusqueda;
                     $sql .= ' = ' . $valorAbuscar;
@@ -158,7 +166,6 @@ class Database
                     $sql .= ' like "%' . $valorAbuscar . '%"';
                 }
             }
-            echo $sql;
             $query = $con->prepare($sql);
             try {
                 if ($query->execute()) {
