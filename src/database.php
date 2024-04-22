@@ -34,9 +34,7 @@ class Database
     /**
      * Obtiene los datos de la tabla escogida
      * 
-     * @return array
-     * El método devolverá un array con los campos resultantes de la búsqueda, o 
-     * un array vacío en el caso de no encontrar nada
+     *
      * @param string $tabla
      * La tabla de la que deseas obtener los datos
      * @param array $campos
@@ -45,6 +43,9 @@ class Database
      * [opcional] El campo a partir del cual se quiere filtrar la búsqueda.
      * @param mixed $valorAbuscar 
      * [opcional] El valor que el campo por el que se filtra la búsqueda debe tener. 
+     *  @return array
+     * El método devolverá un array con los campos resultantes de la búsqueda, o 
+     * un array vacío en el caso de no encontrar nada
      */
     public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = ''): array
     {
@@ -75,12 +76,14 @@ class Database
     /**
      * Eliminar el registro correspondiente
      * 
+     * 
      * @param int $ID
      * El id del registro que se desea eliminar
      * @param string $tabla
      * La tabla de la cual se desea eliminar el registro
      * @return null|bool
      * devolverá true si el registro se ha eliminado, false si no o null si ha habido algún error
+     * 
      */
 
     public function eliminar(int $ID, string $tabla): ?bool
@@ -102,8 +105,7 @@ class Database
 
     /**
      * Modifica los valores deseados de la tabla indicada
-     * @return null|bool
-     * Devuelve true si se ha modificado algún parámetro, false si ningún registro se ha visto afectado y NULL si ha habido un error.
+     * 
      * @param string $tabla
      * La tabla de la cual se quieren modificar los valores
      * @param array $camposAmodificar
@@ -115,6 +117,8 @@ class Database
      * [opcional] el parámetro que indica que registro quieres modificar, en el caso de estar vacío, se modificarán todos los registros
      * @param mixed $valorAbuscar
      * [opcional] el valor que el campo del registro que se quiere modificar debe tener según el parámetro de búsqueda.
+     * @return null|bool
+     * Devuelve true si se ha modificado algún parámetro, false si ningún registro se ha visto afectado y NULL si ha habido un error.
      */
 
     public function modificar(string $tabla, array $camposAmodificar, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
@@ -157,14 +161,15 @@ class Database
     /**
      * Obtiene el total de registros en la tabla especificada
      * 
-     * @return null|int
-     * Devuelve el un int con el total de tablas en caso de funcionar todo o NULL en caso de haber algún error
+     * 
      * @param string $tabla
      * La tabla de la cual quieres obtener el total
      * @param string $parametroBusqueda
      * [opcional] El campo a partir del cual se quiere filtrar la búsqueda
      * @param mixed $valorAbuscar
      * [opcional] El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
+     * @return null|int
+     * Devuelve el un int con el total de tablas en caso de funcionar todo o NULL en caso de haber algún error
      */
     public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?int
     {
@@ -190,15 +195,16 @@ class Database
     /**
      * Añade el WHERE a la sentencia sql correspondiente según el tipo de valor que se utilice
      * 
-     * @return string
-     * Devuelve el string que se debe añadir a la sentencia sql para poder filtrar los resultados
+     * 
      * @param string $parametroBusqueda
      * El campo a partir del cual se quiere filtrar la búsqueda
      * @param mixed $valorAbuscar
      *  El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
+     * @return string
+     * Devuelve el string que se debe añadir a la sentencia sql para poder filtrar los resultados
      */
 
-    private function busqueda(string $parametroBusqueda, mixed $valorAbuscar) : string
+    private function busqueda(string $parametroBusqueda, mixed $valorAbuscar): string
     {
         if (is_bool($valorAbuscar)) {
             return ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
