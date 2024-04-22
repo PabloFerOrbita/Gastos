@@ -198,7 +198,7 @@ class Database
      *  El valor que el campo a partir del cual se quiere filtrar la búsqueda debe tener
      */
 
-    public function busqueda(string $parametroBusqueda, mixed $valorAbuscar)
+    public function busqueda(string $parametroBusqueda, mixed $valorAbuscar) : string
     {
         if (is_bool($valorAbuscar)) {
             return ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
