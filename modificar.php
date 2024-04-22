@@ -17,7 +17,7 @@
     <div class="vh-100">
         <?php
         if (isset($_POST['editar'])) {
-            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . implode(" ", explode("+", $_POST['descripcion'])) . "', categoria = '" . $_POST['categoria'] . "', importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
+            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . str_replace("'", "''",$_POST['descripcion']) . "', categoria = '" . $_POST['categoria'] . "', importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
         }
         if (isset($_GET['ID'])) {
             $registro = Inc_cabecera::recibirRegistro($_GET['ID']);
@@ -29,7 +29,7 @@
                 echo '<div class = "mb-3 row g-2">';
                 echo '<div class="col-12">';
                 echo '<label for="descripcion" class="form-label">Descripcion del gasto</label>';
-                echo '<textarea id="descripcion" name="descripcion" class="form-control" required>' .  $registro[0]['descripcion'] . '</textarea>';
+                echo '<input type="text" id="descripcion" name="descripcion" class="form-control" pattern="^[^\s]+.*$" value= "' . str_replace('"', '&quot;', $registro[0]['descripcion']) . '" required></input>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class= "mb-3 row g-2 ">';
