@@ -189,6 +189,49 @@ class Database
         }
     }
 
+    /**
+     * Inserta un nuevo registro en la tabla indicada con los datos indicados
+     * 
+     * @param string $tabla
+     * El nombre de la tabla en la que se desean introducir los datos
+     * @param array $datos
+     * Los valores que se le desean dar a cada uno de las columnas de la tabla, en 
+     * el orden correspondiente
+     * @return bool
+     * Devuelve true en el caso de que se inserten los datos o false en caso de error
+     */
+    public function aniadir(string $tabla, array $datos) : bool
+    {
+
+        if (count($datos) > 0) {
+            $con = self::conexion();
+            $sql = "INSERT INTO " . $tabla . " values (NULL, ";
+            $ultimo_indice = array_key_last($datos);
+            foreach ($datos as $indice => $dato) {
+                if (is_bool($dato)) {
+                    $sql .= (int) $dato;
+                } elseif (is_numeric($dato)) {
+                    $sql .= $dato;
+                } else if (is_string($dato)) {
+                    $sql .= "'" . str_replace("'", "''", $dato) . "'";
+                }
+                if ($indice !== $ultimo_indice) {
+                    $sql .= ', ';
+                }
+            }
+            $sql .= ')';
+            $query = $con->prepare($sql);
+            try {
+                if ($query->execute()) {
+                    return true;
+                }
+                return false;
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
+    }
+
 
     /**
      * Añade el WHERE a la sentencia sql correspondiente según el tipo de valor que se utilice
