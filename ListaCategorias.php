@@ -41,7 +41,7 @@
             let cuerpo = $('<tbody>');
             data.forEach(element => {
                 let fila = $('<tr>');
-                $(fila).append(`<td>${element.nombre.replace('<', '&lt;').replace('>', '&lt;')}</td><td><a class="btn btn-primary">Editar</a></td><td><button class="btn btn-danger">Eliminar</button></td>`);
+                $(fila).append(`<td>${element.nombre.replace('<', '&lt;').replace('>', '&lt;')}</td><td><a class="btn btn-primary" href="modificarCategoria.php?id=${element.id}">Editar</a></td><td><button class="btn btn-danger">Eliminar</button></td>`);
                 $(cuerpo).append(fila);
             })
 
