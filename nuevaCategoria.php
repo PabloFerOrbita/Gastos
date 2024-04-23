@@ -51,6 +51,7 @@
                     },
                     success: (data) => {
                         if (data) {
+                            $('#nombre').val('');
                             $('#mensaje').empty();
                             $('#mensaje').removeClass();
                             $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
