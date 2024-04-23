@@ -1,5 +1,48 @@
 <?php
 require_once('Database.php');
+if (isset($_POST['accion'])) {
+    $Gasto = new Gastos();
+    switch ($_POST['accion']) {
+
+        case 'obtener_todos':
+
+            echo json_encode($Gasto->obtener_todos());
+            break;
+        case 'eliminar':
+            if (isset($_POST['id'])) {
+                echo json_encode($Gasto->eliminar_gasto($_POST['id']));
+            } else {
+                echo json_encode('Error: se debe especificar un id');
+            }
+            break;
+        case 'actualizar':
+            if (isset($_POST['datos'])) {
+                if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+                    echo json_encode($Gasto->actualizar($_POST['datos'], $_POST['filtro'], $_POST['valor']));
+                } else {
+                    echo json_encode($Gasto->actualizar($_POST['datos']));
+                }
+            } else {
+                echo json_encode('Error: no se han introducido datos');
+            }
+            break;
+        case 'aniadir':
+            if (isset($_POST['datos'])) {
+                echo json_encode($Gasto->aniadir($_POST['datos']));
+            } else {
+                echo json_encode('Error: no se han introducido datos');
+            }
+            break;
+        case 'total':
+            echo json_encode($Gasto->total());
+            break;
+        case 'suma';
+            echo json_encode($Gasto->obtener_suma_gastos());
+            break;
+        default:
+            echo json_encode('La acción no existe');
+    }
+}
 class Gastos
 {
     private $tabla = 'gastos';
@@ -53,9 +96,9 @@ class Gastos
      * Devuelve un float con la suma de todos los gastos, o null en caso de error
      */
 
-    public function obtener_suma_gastos() : ?float
+    public function obtener_suma_gastos(): ?float
     {
-       return $this->db->suma($this->tabla, 'importe');
+        return $this->db->suma($this->tabla, 'importe');
     }
 
     /**
@@ -76,7 +119,7 @@ class Gastos
         return $this->db->modificar($this->tabla, $datos, $filtro, $valor);
     }
 
-     /**
+    /**
      * Inserta un nuevo registro en la tabla gastos indicada con los datos indicados
      * 
      * @param array $datos
@@ -100,5 +143,4 @@ class Gastos
     {
         return $this->db->obtener_total($this->tabla);
     }
-
 }
