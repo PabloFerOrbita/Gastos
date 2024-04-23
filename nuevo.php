@@ -16,11 +16,11 @@
     <div class="vh-100">
         <h4 class="m-2">Has elegido la opción Nuevo</h4>
         <?php
-        
+
         if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
-            echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . str_replace("'", "''",$_POST['descripcion']) . "', '" . $_POST['categoria'] .  "')");
+            echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . str_replace("'", "''", $_POST['descripcion']) . "', '" . $_POST['categoria'] .  "')");
         }
-        
+
         echo '<div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">';
         echo '<div class="col-3 border border-2 p-5 border-danger">';
         echo '<form method="POST">';
@@ -39,8 +39,6 @@
         echo '<label for="categoria" class="form-label">Categoria del gasto</label><br>';
         echo '<select name="categoria" id="categoria" class="form-control " required>
     <option value=""  disabled selected >Elige una opción</option>
-    <option value="Telefono">Telefono</option>
-    <option value="Ocio">Ocio</option>
     </select>';
         echo '</div>';
         echo '</div>';
@@ -60,8 +58,22 @@
         ?>
     </div>
     <script>
+        $.ajax({
+            method: 'POST',
+            url: 'src/Categorias.php',
+            dataType: 'json',
+            data: {
+                'accion': 'obtener',
+
+            },
+            success: data => {
+                data.forEach(element => {
+                    $('#categoria').append(`<option value=${element.id}>${element.nombre}</option>`);
+                });
+            }
+        })
         var numero = 0.01;
-        console.log(/^(?![\s-])[\w\s-]+$/.test(" "));
+
         $('#fecha').on('blur', (e) => {
             !e.target.checkValidity() && $(e.target).val("");
         })
