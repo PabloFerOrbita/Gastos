@@ -1,5 +1,52 @@
 <?php
 require_once('Database.php');
+
+if (isset($_POST['accion'])) {
+    $categoria = new Categorias();
+    switch ($_POST['accion']) {
+        case 'InstalarTabla':
+            echo json_encode($categoria->InstalarTabla());
+            break;
+        case 'obtener':
+            if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+                echo json_encode($categoria->obtener($_POST['filtro'], $_POST['valor']));
+            } else {
+                echo json_encode($categoria->obtener());
+            }
+            break;
+        case 'eliminar':
+            if (isset($_POST['id'])) {
+                echo json_encode($categoria->eliminar($_POST['id']));
+            } else {
+                echo json_encode('Error: se debe especificar un id');
+            }
+            break;
+        case 'actualizar':
+            if (isset($_POST['datos'])) {
+                if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+                    echo json_encode($categoria->actualizar($_POST['datos'], $_POST['filtro'], $_POST['valor']));
+                } else {
+                    echo json_encode($categoria->actualizar($_POST['datos']));
+                }
+            } else {
+                echo json_encode('Error: no se han introducido datos');
+            }
+            break;
+        case 'aniadir':
+            if (isset($_POST['datos'])) {
+                echo json_encode($categoria->aniadir($_POST['datos']));
+            } else {
+                echo json_encode('Error: no se han introducido datos');
+            }
+            break;
+        case 'total':
+            echo json_encode($categoria->total());
+            break;
+        default:
+            echo json_encode('La acción no existe');
+    }
+}
+
 class Categorias
 {
     private $tabla = 'categorias';
@@ -93,7 +140,7 @@ class Categorias
      * @return bool
      * Devuelve true en el caso de que se inserten los datos o false en caso de error
      */
-    public function aniadir(array $datos) : bool
+    public function aniadir(array $datos): bool
     {
         return $this->db->aniadir($this->tabla, $datos);
     }
@@ -104,7 +151,8 @@ class Categorias
      * Devuelve el total de registros en el caso de funcionar o null en el caso de haber
      * un error
      */
-    public function total() : int {
+    public function total(): int
+    {
         return $this->db->obtener_total($this->tabla);
     }
 }
