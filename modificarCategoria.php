@@ -9,7 +9,13 @@
 </head>
 
 <body>
-
+    <?php
+    require_once('inc_cabecera.php');
+    ?>
+    <div class="vh-100" >
+        <div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50" id='cuerpo'>
+        </div>
+    </div>
 </body>
 <script>
     var id = <?php if (isset($_GET['id'])) {
@@ -29,9 +35,15 @@
 
             },
             success: data => {
-                console.log(data);
+                if (data > 0) {
+
+                } else {
+                    $('#cuerpo').append('<div class="col-3 p-5 text-center"><h4>El registro no existe</h4></div>')
+                }
             }
         });
+    } else {
+        $('#cuerpo').append('<div class="col-3 p-5 text-center"><h4>El registro no existe</h4></div>')
     }
 </script>
 
