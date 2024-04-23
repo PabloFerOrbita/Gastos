@@ -147,7 +147,7 @@
             window.location.href = "nuevo.php"
         });
         $('#categorias').on('click', () => {
-            window.location.href = "ListaCategoria.php"
+            window.location.href = "ListaCategorias.php"
         });
 
     </script>
