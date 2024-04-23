@@ -97,4 +97,14 @@ class Categorias
     {
         return $this->db->aniadir($this->tabla, $datos);
     }
+
+    /**
+     * Obtiene el total de registros en la tabla categorias
+     * @return null|int
+     * Devuelve el total de registros en el caso de funcionar o null en el caso de haber
+     * un error
+     */
+    public function total(){
+        return $this->db->obtener_total($this->tabla);
+    }
 }
