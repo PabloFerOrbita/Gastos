@@ -31,7 +31,7 @@
             <div class="h-50 overflow-auto">
                 <?php
                 if (isset($_GET['busqueda'])) {
-                    Inc_cabecera::MostrarLista("SELECT * FROM gastos WHERE descripcion like '%" . str_replace("'", "''", trim($_GET['busqueda'])) . "%' ORDER BY fecha DESC");
+                    Inc_cabecera::MostrarLista("SELECT g.id, g.fecha as fecha, g.importe as importe, g.descripcion as descripcion, c.nombre as categoria FROM gastos g  JOIN categorias c ON g.categoria_id = c.id and descripcion like '%" . str_replace("'", "''", trim($_GET['busqueda'])) . "%' ORDER BY fecha DESC");
                 }
                 require_once('inc_pie.php');
                 ?>
