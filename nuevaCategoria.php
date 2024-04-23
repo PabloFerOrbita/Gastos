@@ -51,7 +51,7 @@
                     },
                     success: (data) => {
                         if (data) {
-                            $('#nombre').val('');
+                            $('#formulario').trigger('reset');
                             $('#mensaje').empty();
                             $('#mensaje').removeClass();
                             $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
