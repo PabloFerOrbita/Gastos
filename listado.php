@@ -17,7 +17,7 @@
         <div class="container-fluid vh-100">
             <div class="h-50 overflow-auto">
                 <?php
-                Inc_cabecera::MostrarLista('SELECT ID, fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
+                Inc_cabecera::MostrarLista('SELECT id, fecha, importe, descripcion FROM gastos ORDER BY fecha DESC');
                 require_once('inc_pie.php');
                 ?>
             </div>

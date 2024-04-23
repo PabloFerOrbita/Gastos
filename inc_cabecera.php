@@ -64,7 +64,7 @@
                     if (array_key_exists('categoria', $gasto)) {
                         echo '<td> ' . $gasto['categoria'] . ' </td>';
                     }
-                    echo '<td> <a type="button" href="modificar.php?ID=' . $gasto['ID'] . '">Modificar</a> </td></tr>';
+                    echo '<td> <a type="button" href="modificar.php?ID=' . $gasto['id'] . '">Modificar</a> </td></tr>';
                 }
                 echo '</tbody>';
                 echo '</table>';
@@ -90,7 +90,7 @@
         static function recibirRegistro($ID)
         {
             $con = self::conectar();
-            $query = $con->prepare('SELECT * FROM gastos WHERE ID = ' . $ID);
+            $query = $con->prepare('SELECT * FROM gastos WHERE id = ' . $ID);
             try {
                 $query->execute();
                 $registro = $query->fetchAll();
