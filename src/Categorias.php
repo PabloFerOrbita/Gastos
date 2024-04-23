@@ -104,7 +104,7 @@ class Categorias
      * Devuelve el total de registros en el caso de funcionar o null en el caso de haber
      * un error
      */
-    public function total(){
+    public function total() : int {
         return $this->db->obtener_total($this->tabla);
     }
 }
