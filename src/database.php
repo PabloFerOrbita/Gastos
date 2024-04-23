@@ -109,10 +109,8 @@ class Database
      * @param string $tabla
      * La tabla de la cual se quieren modificar los valores
      * @param array $camposAmodificar
-     * Los campos que se quiere modificar
-     * @param array $valoresNuevos
-     * Los valores que se desea introducir en esos campos, en el mismo orden que el de los campos que se quieren cambiar; en caso de tener claves,
-     * tambíen deben ser las mismas.
+     * Los campos que se quiere modificar junto con los valores que se les desean añadir, debe seguir la siguiente sintaxis
+     * [Nombre del campo => valor nuevo]
      * @param string $parametroBusqueda
      * [opcional] el parámetro que indica que registro quieres modificar, en el caso de estar vacío, se modificarán todos los registros
      * @param mixed $valorAbuscar
