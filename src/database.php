@@ -200,7 +200,7 @@ class Database
      * @return bool
      * Devuelve true en el caso de que se inserten los datos o false en caso de error
      */
-    public function aniadir(string $tabla, array $datos) : bool
+    public function aniadir(string $tabla, array $datos): bool
     {
 
         if (count($datos) > 0) {
@@ -229,6 +229,28 @@ class Database
             } catch (PDOException $e) {
                 return false;
             }
+        }
+    }
+
+    /**
+     * Obtiene la suma de todos los registros del campo especificado en la tabla especificada
+     * @return null|float
+     * Devuelve un float con el total de todos los gastos, o null en caso de error
+     */
+    public function suma(string $tabla, string $campo): ?float
+    {
+        $con = self::conexion();
+        $sql = "SELECT SUM(" . $campo . ") FROM " . $tabla;
+        $query = $con->prepare($sql);
+        try {
+            if ($query->execute()) {
+                $datos = $query->fetchColumn();
+                return $datos;
+            }
+            return null;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return null;
         }
     }
 
