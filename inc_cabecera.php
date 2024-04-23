@@ -124,7 +124,7 @@
                 $con = null;
                 return '<div class="p-3 m-3 bg-success-subtle"><h3>Se han editado los datos correctamente</h3></div>';
             } catch (PDOException $e) {
-                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al editar los datos</h3></div> ' . $e->getMessage();
+                return '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al editar los datos</h3></div> ';
             }
         }
 

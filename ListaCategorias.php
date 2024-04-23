@@ -32,9 +32,28 @@
 
             },
             success: (data) => {
-                MostrarTabla(data)
+                MostrarTabla(data);
+                $('.eliminar').on('click', eliminar);
             }
         })
+
+
+
+        function eliminar(e) {
+            $.ajax({
+                method: 'POST',
+                url: 'src/Categorias.php',
+                dataType: 'json',
+                data: {
+                    'accion': 'eliminar',
+                    'id': e.target.id
+
+                },
+                success: (data) => {
+                    $(`#fila${e.target.id}`).remove();
+                }
+            })
+        }
 
         function MostrarTabla(data) {
             let tabla = $('<table class="table table-striped table-bordered">');
@@ -42,8 +61,8 @@
             $(encabezado).append('<tr><th>Nombre</th><th>Editar</th><th>Eliminar</th></tr>');
             let cuerpo = $('<tbody>');
             data.forEach(element => {
-                let fila = $('<tr>');
-                $(fila).append(`<td>${element.nombre.replace('<', '&lt;').replace('>', '&lt;')}</td><td><a class="btn btn-primary" href="modificarCategoria.php?id=${element.id}">Editar</a></td><td><button class="btn btn-danger">Eliminar</button></td>`);
+                let fila = $(`<tr id="fila${element.id}">`);
+                $(fila).append(`<td>${element.nombre.replace('<', '&lt;').replace('>', '&lt;')}</td><td><a class="btn btn-primary" href="modificarCategoria.php?id=${element.id}">Editar</a></td><td><button class="btn btn-danger eliminar" id="${element.id}">Eliminar</button></td>`);
                 $(cuerpo).append(fila);
             })
 
