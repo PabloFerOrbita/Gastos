@@ -77,7 +77,7 @@ class Gastos
     }
 
      /**
-     * Inserta un nuevo registro en la tabla categorias indicada con los datos indicados
+     * Inserta un nuevo registro en la tabla gastos indicada con los datos indicados
      * 
      * @param array $datos
      * Los valores que se le desean dar a cada uno de las columnas de la tabla, en 
@@ -90,5 +90,15 @@ class Gastos
         return $this->db->aniadir($this->tabla, $datos);
     }
 
+    /**
+     * Obtiene el total de registros en la tabla gastos
+     * @return null|int
+     * Devuelve el total de registros en el caso de funcionar o null en el caso de haber
+     * un error
+     */
+    public function total(): int
+    {
+        return $this->db->obtener_total($this->tabla);
+    }
 
 }
