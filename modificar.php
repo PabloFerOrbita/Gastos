@@ -17,7 +17,7 @@
     <div class="vh-100">
         <?php
         if (isset($_POST['editar'])) {
-            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . str_replace("'", "''",$_POST['descripcion']) . "', categoria = '" . $_POST['categoria'] . "', importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
+            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . str_replace("'", "''", $_POST['descripcion']) . "', categoria = '" . $_POST['categoria'] . "', importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
         }
         if (isset($_GET['ID'])) {
             $registro = Inc_cabecera::recibirRegistro($_GET['ID']);
@@ -40,11 +40,9 @@
                 echo '<div class ="col-6">';
                 echo '<label for="categoria" class="form-label">Categoria del gasto</label><br>';
                 echo '<select name="categoria" id="categoria" class="form-control " required>
-        <option value=""  disabled selected >Elige una opción</option>
-        <option value="Telefono">Telefono</option>
-        <option value="Ocio">Ocio</option>
+       
         </select>';
-                echo '<input type="hidden" name="editar" id="editar" value="' . $registro[0]['ID'] . '"/>';
+                echo '<input type="hidden" name="editar" id="editar" value="' . $registro[0]['id'] . '"/>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class ="mb-3 row g-2">';
@@ -77,6 +75,21 @@
 
 
     <script>
+        $.ajax({
+            method: 'POST',
+            url: 'src/Categorias.php',
+            dataType: 'json',
+            data: {
+                'accion': 'obtener',
+
+            },
+            success: data => {
+                data.forEach(element => {
+                    $('#categoria').append(`<option value=${element.id}>${element.nombre}</option>`);
+                });
+                $('#categoria').val(<?= json_encode($registro[0]['categoria_id']) ?>)
+            }
+        })
         var numero = <?= $registro[0]['importe'] ?>;
         $('#fecha').on('blur', (e) => {
             !e.target.checkValidity() && $(e.target).val(<?= json_encode($registro[0]['fecha']) ?>);
@@ -98,7 +111,7 @@
             $(e.target).val() == 0 && $(e.target).val(0.01);
         })
 
-        $('#categoria').val(<?= json_encode($registro[0]['categoria']) ?>)
+       
     </script>
 </body>
 
