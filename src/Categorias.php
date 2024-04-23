@@ -38,5 +38,21 @@ class Categorias
         }
     }
 
+    /**
+     * Obtiene los datos de la tabla categorias según el filtro que se aplique, o todos si no
+     * se aplica ninguno.
+     * 
+     * @param string $filter
+     * [opcional] El campo a partir del cuál se quieren filtrar los datos
+     * @param mixed $valor
+     * [opcional] El valor que debe tener el campo de filtro
+     * @return array
+     * Devuelve un array con los datos obtenidos o con un mensaje de error.
+     */
+
+    public function obtener(string $filter = '', mixed $valor = '') : array {
+       return $this->db->obtener_datos('categorias', [], $filter, $valor);
+    }
+
 
 }
