@@ -12,8 +12,24 @@
     <?php
     require_once('inc_cabecera.php');
     ?>
-    <div class="vh-100" >
+    <div class="vh-100">
         <div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50" id='cuerpo'>
+            <div class="col-3 border border-2 p-5 border-danger">
+                <form method="POST" id="formulario">
+                    <div class="mb-3 row g-2">
+                        <div class="col-12">
+                            <label for="nombre" class="form-label">Nombre de la categoría</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" pattern="^[^\s]+.*$" required></input>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-danger w-100">Guardar</button>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
     </div>
 </body>
@@ -35,9 +51,14 @@
 
             },
             success: data => {
-                if (data > 0) {
+                if (data.length > 0) {
+
+                    $('#nombre').val(data[0].nombre);
+
+
 
                 } else {
+                    $('#cuerpo').empty();
                     $('#cuerpo').append('<div class="col-3 p-5 text-center"><h4>El registro no existe</h4></div>')
                 }
             }
