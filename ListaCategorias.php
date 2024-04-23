@@ -15,9 +15,11 @@
     <div class="m-2">
         <h4 class="mb-5">Has elegido la opción Categorias</h4>
         <div class="container-fluid vh-100">
+            <a class="btn btn-primary mb-3" href="nuevaCategoria.php">Crear Categoria</a>
             <div class="h-50 overflow-auto" id='lista'>
 
             </div>
+
         </div>
     </div>
     <script>
