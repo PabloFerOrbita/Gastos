@@ -18,7 +18,7 @@
         <?php
 
         if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
-            echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . str_replace("'", "''", $_POST['descripcion']) . "', '" . $_POST['categoria'] .  "')");
+            echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . str_replace("'", "''", $_POST['descripcion']) . "', " . $_POST['categoria'] .  ")");
         }
 
         echo '<div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">';
