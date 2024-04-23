@@ -48,12 +48,12 @@ class Gastos
     }
 
     /**
-     * Obtiene el total de todos los gastos
+     * Obtiene la suma de todos los gastos
      * @return null|float
-     * Devuelve un float con el total de todos los gastos, o null en caso de error
+     * Devuelve un float con la suma de todos los gastos, o null en caso de error
      */
 
-    public function obtener_gasto_total() : ?float
+    public function obtener_suma_gastos() : ?float
     {
        return $this->db->suma($this->tabla, 'importe');
     }
