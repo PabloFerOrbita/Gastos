@@ -54,5 +54,19 @@ class Categorias
        return $this->db->obtener_datos('categorias', [], $filter, $valor);
     }
 
+    /**
+     * Elimina el registro correspondiente de la tabla categorias
+     * 
+     * @param int $id
+     * El id del registro que se desea eliminar
+     * @return null|bool
+     * Devuelve true si se ha eliminado algún registro, false si no y null si ha habido algún error
+     */
+    public function eliminar(int $id) : ?bool{
+        return $this->db->eliminar($id, $this->tabla);
+    }
+
+    
+
 
 }
