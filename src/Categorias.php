@@ -17,8 +17,8 @@ class Categorias
      * Devuelve TRUE si la tabla se ha creado o ya existe, y FALSE si ha habido un error a la hora
      * de ejecutar la sentencia sql; 
      */
-    
-    public function InstalarTabla() : bool
+
+    public function InstalarTabla(): bool
     {
         $con = $this->db->conexion();
         $sql = 'CREATE TABLE IF NOT EXISTS CATEGORIAS (
@@ -50,8 +50,9 @@ class Categorias
      * Devuelve un array con los datos obtenidos o con un mensaje de error.
      */
 
-    public function obtener(string $filter = '', mixed $valor = '') : array {
-       return $this->db->obtener_datos('categorias', [], $filter, $valor);
+    public function obtener(string $filter = '', mixed $valor = ''): array
+    {
+        return $this->db->obtener_datos('categorias', [], $filter, $valor);
     }
 
     /**
@@ -62,11 +63,25 @@ class Categorias
      * @return null|bool
      * Devuelve true si se ha eliminado algún registro, false si no y null si ha habido algún error
      */
-    public function eliminar(int $id) : ?bool{
+    public function eliminar(int $id): ?bool
+    {
         return $this->db->eliminar($id, $this->tabla);
     }
-
-    
-
-
+    /**
+     * Modifica los campos deseados
+     * 
+     * @param array $datos
+     * Los campos que se quiere modificar junto con los valores que se les desean añadir, debe seguir la siguiente sintaxis
+     * [Nombre del campo => valor nuevo]
+     * @param string $filtro
+     * [opcional] el parámetro que indica que registro quieres modificar, en el caso de estar vacío, se modificarán todos los registros
+     * @param mixed $valor
+     * [opcional] el valor que el campo del registro que se quiere modificar debe tener según el parámetro de búsqueda.
+     * @return null|bool
+     * Devuelve true si se ha modificado algún parámetro, false si ningún registro se ha visto afectado y NULL si ha habido un error.
+     */
+    public function actualizar(array $datos, string $filtro = '', mixed $valor = ''): ?bool
+    {
+        return $this->db->modificar($this->tabla, $datos, $filtro, $valor);
+    }
 }
