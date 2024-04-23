@@ -17,6 +17,7 @@
         <button id="buscar" class="btn btn-link text-white">Buscar</button>
         <button id="listado" class="btn btn-link text-white">Listado</button>
         <button id="nuevo" class="btn btn-link text-white">Nuevo</button>
+        <button id="categorias" class="btn btn-link text-white">Categorias</button>
 
         <h1 class="text-white">Contabilidad</h1>
     </header>
