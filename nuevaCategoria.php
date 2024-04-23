@@ -51,11 +51,23 @@
                     },
                     success: (data) => {
                         if (data) {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
                             $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
-                            $('#mensaje').append('<h3>Se han añadido los datos</h3>');
+                            $('#mensaje').append('<h3>Se han actualizado los datos</h3>');
+                            setTimeout(() => {
+                                $('#mensaje').empty();
+                                $('#mensaje').removeClass();
+                            }, 2000)
                         } else {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
                             $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                            $('#mensaje').append('<h3>Ha habido un error a la hora de añadir los datos</h3>');
+                            $('#mensaje').append('<h3>Ha habido un error a la hora de actualizar los datos</h3>');
+                            setTimeout(() => {
+                                $('#mensaje').empty();
+                                $('#mensaje').removeClass();
+                            }, 2000)
                         }
                     }
                 })
