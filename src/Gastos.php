@@ -55,18 +55,8 @@ class Gastos
 
     public function obtener_gasto_total() : ?float
     {
-        $con = $this->db->conexion();
-        $sql = 'SELECT SUM(importe) FROM ' . $this->tabla;
-        $query = $con->prepare($sql);
-        try {
-            if ($query->execute()) {
-
-                $datos = $query->fetchColumn();
-                return $datos;
-            }
-            return null;
-        } catch (PDOException $e) {
-            return null;
-        }
+       return $this->db->suma($this->tabla, 'importe');
     }
+
+
 }
