@@ -17,7 +17,7 @@
     <div class="vh-100">
         <?php
         if (isset($_POST['editar'])) {
-            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . str_replace("'", "''", $_POST['descripcion']) . "', categoria = " . $_POST['categoria'] . ", importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
+            echo Inc_cabecera::actualizarRegistro("UPDATE gastos SET fecha = '" . $_POST['fecha'] . "', descripcion = '" . str_replace("'", "''", $_POST['descripcion']) . "', categoria_id = " . $_POST['categoria'] . ", importe = " . $_POST['importe'] . " WHERE ID = " . $_POST['editar']);
         }
         if (isset($_GET['ID'])) {
             $registro = Inc_cabecera::recibirRegistro($_GET['ID']);
