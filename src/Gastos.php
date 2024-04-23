@@ -76,5 +76,19 @@ class Gastos
         return $this->db->modificar($this->tabla, $datos, $filtro, $valor);
     }
 
+     /**
+     * Inserta un nuevo registro en la tabla categorias indicada con los datos indicados
+     * 
+     * @param array $datos
+     * Los valores que se le desean dar a cada uno de las columnas de la tabla, en 
+     * el orden correspondiente
+     * @return bool
+     * Devuelve true en el caso de que se inserten los datos o false en caso de error
+     */
+    public function aniadir(array $datos): bool
+    {
+        return $this->db->aniadir($this->tabla, $datos);
+    }
+
 
 }
