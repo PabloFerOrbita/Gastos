@@ -14,6 +14,7 @@
     ?>
     <div class="m-2">
         <h4 class="mb-5">Has elegido la opción Categorias</h4>
+        <div id="mensaje"></div>
         <div class="container-fluid vh-100">
             <a class="btn btn-primary mb-3" href="nuevaCategoria.php">Crear Categoria</a>
             <div class="h-50 overflow-auto" id='lista'>
@@ -50,7 +51,27 @@
 
                 },
                 success: (data) => {
-                    $(`#fila${e.target.id}`).remove();
+                    if (data) {
+                        $(`#fila${e.target.id}`).remove();
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                        $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
+                        $('#mensaje').append('<h3>Se ha eliminado la categoría</h3>');
+                        setTimeout(() => {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
+                        }, 2000)
+                    } else {
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                        $('#mensaje').append('<h3>Ha habido un error a la hora de eliminar la categoría</h3>');
+                        setTimeout(() => {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
+                        }, 2000)
+
+                    }
                 }
             })
         }
