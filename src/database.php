@@ -131,7 +131,7 @@ class Database
                 } elseif (is_numeric($campo)) {
                     $sql .= $indice . ' = ' . $campo;
                 } else if (is_string($campo)) {
-                    $sql .= $indice . ' = "' . $campo . '"';
+                    $sql .= $indice . " = '" . str_replace("'", "''", $campo) . "'";
                 }
                 if ($indice !== $ultimo_indice) {
                     $sql .= ', ';
