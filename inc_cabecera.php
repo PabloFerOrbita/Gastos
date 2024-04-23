@@ -146,6 +146,10 @@
         $('#nuevo').on('click', () => {
             window.location.href = "nuevo.php"
         });
+        $('#categorias').on('click', () => {
+            window.location.href = "ListaCategoria.php"
+        });
+
     </script>
 </body>
 
