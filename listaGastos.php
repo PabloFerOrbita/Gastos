@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="RellenarTabla.js"></script>
     <title>Document</title>
 </head>
 
@@ -47,17 +48,7 @@
             success: (data) => {
 
                 if (data.length > 0) {
-                    data = data.sort((a, b) => {
-                        return new Date(b.fecha) - new Date(a.fecha)
-                    });
-                    data.forEach(element => {
-                        let fila = $('<tr>');
-                        $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
-                        $('#cuerpoTabla').append(fila);
-                    })
-                    $('#tabla').removeClass('d-none');
-
-
+                   RellenarTabla.RellenarGastos(data)
                 } else {
                     $('#mensaje').empty();
                     $('#mensaje').removeClass();
@@ -78,9 +69,6 @@
             }
         })
 
-        function AMDaDMA(fecha) {
-            return fecha.split('-').reverse().join('-');
-        }
     </script>
 </body>
 
