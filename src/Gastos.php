@@ -17,10 +17,11 @@ if (isset($_POST['accion'])) {
             break;
         case 'obtener_gasto':
             if(isset($_POST['id'])){
-                echo json_encode($Gasto->obtener($_POST['id']));
+                echo json_encode($Gasto->obtener_gasto($_POST['id']));
             } else{
                 echo json_encode('Error: se debe especificar un id');
             }
+            break;
         case 'eliminar':
             if (isset($_POST['id'])) {
                 echo json_encode($Gasto->eliminar_gasto($_POST['id']));
