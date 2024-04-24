@@ -18,8 +18,16 @@ class RellenarTabla {
         $('#tabla').removeClass('d-none');
     }
 
+    static RellenarCategorias(data) {
+        data.forEach(element => {
+            let fila = $(`<tr id="fila${element.id}">`);
+            $(fila).append(`<td>${element.nombre.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a class="btn btn-primary" href="modificarCategoria.php?id=${element.id}">Editar</a></td><td><button class="btn btn-danger eliminar" id="${element.id}">Eliminar</button></td>`);
+            $('#cuerpoTabla').append(fila);
+        })
+        $('#tabla').removeClass('d-none');
+    }
 
-  static AMDaDMA(fecha) {
+    static AMDaDMA(fecha) {
         return fecha.split('-').reverse().join('-');
     }
 }
