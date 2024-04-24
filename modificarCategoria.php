@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="Mensajes.js"></script>
     <title>Document</title>
 </head>
 
@@ -58,11 +59,7 @@
             },
             success: data => {
                 if (data.length > 0) {
-
                     $('#nombre').val(data[0].nombre);
-
-
-
                 } else {
                     $('#cuerpo').empty();
                     $('#cuerpo').append('<div class="col-3 p-5 text-center"><h4>El registro no existe</h4></div>')
@@ -70,12 +67,7 @@
             },
             error: () => {
                 $('#cuerpo').empty();
-                $('#mensaje').empty();
-                $('#mensaje').removeClass();
-                $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
-
-
+                Mensajes.MensajeError('Error al conectarse al servidor');
             }
         });
     } else {
@@ -101,46 +93,17 @@
             success: (data) => {
                 if (data !== null) {
                     if (data) {
-                        $('#mensaje').empty();
-                        $('#mensaje').removeClass();
-                        $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
-                        $('#mensaje').append('<h3>Se han actualizado los datos</h3>');
-                        setTimeout(() => {
-                            $('#mensaje').empty();
-                            $('#mensaje').removeClass();
-                        }, 2000)
+                        Mensajes.MensajeExito('Se ha actualizado el registro');
 
                     } else {
-                        $('#mensaje').empty();
-                        $('#mensaje').removeClass();
-                        $('#mensaje').addClass('p-3 m-3 bg-warning-subtle');
-                        $('#mensaje').append('<h3>No se ha actualizado ningún registro</h3>');
-                        setTimeout(() => {
-                            $('#mensaje').empty();
-                            $('#mensaje').removeClass();
-                        }, 2000)
+                        Mensajes.MensajeAdvertencia('No se ha actualizado nigún registro');
                     }
                 } else {
-                    $('#mensaje').empty();
-                    $('#mensaje').removeClass();
-                    $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                    $('#mensaje').append('<h3>Ha habido un error a la hora de actualizar los datos</h3>');
-                    setTimeout(() => {
-                        $('#mensaje').empty();
-                        $('#mensaje').removeClass();
-                    }, 2000)
+                    Mensajes.MensajeError('Error a la hora de actualizar el registro');
                 }
             },
             error: () => {
-                $('#mensaje').empty();
-                $('#mensaje').removeClass();
-                $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
-                setTimeout(() => {
-                    $('#mensaje').empty();
-                    $('#mensaje').removeClass();
-                }, 2000)
-
+                Mensajes.MensajeError('Error al conectarse al servidor');
             }
         })
 
