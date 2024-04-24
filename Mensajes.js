@@ -22,4 +22,16 @@ class Mensajes {
         }, 2000)
     }
 
+    static MensajeError(mensaje){
+        $('#mensaje').empty();
+        $('#mensaje').removeClass();
+        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+        $('#mensaje').append(`<h3>${mensaje}</h3>`);
+        setTimeout(() => {
+            $('#mensaje').empty();
+            $('#mensaje').removeClass();
+        }, 2000)
+    }
+    
+
 }
