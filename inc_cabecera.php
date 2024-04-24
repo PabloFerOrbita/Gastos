@@ -13,11 +13,11 @@
 
 
     <header class="bg-danger p-2">
-        <button id="inicio" class="btn btn-link text-white">Inicio</button>
-        <button id="buscar" class="btn btn-link text-white">Buscar</button>
-        <button id="listado" class="btn btn-link text-white">Listado</button>
-        <button id="nuevo" class="btn btn-link text-white">Nuevo</button>
-        <button id="categorias" class="btn btn-link text-white">Categorias</button>
+        <a id="inicio" class="btn btn-link text-white" href="index.php">Inicio</a>
+        <a id="buscar" class="btn btn-link text-white" href="buscarGastos.php">Buscar</a>
+        <a id="listado" class="btn btn-link text-white" href="listaGastos.php">Listado</a>
+        <a id="nuevo" class="btn btn-link text-white" href="nuevoGasto.php">Nuevo</a>
+        <a id="categorias" class="btn btn-link text-white" href="ListaCategorias.php">Categorias</a>
 
         <h1 class="text-white">Contabilidad</h1>
     </header>
@@ -135,22 +135,7 @@
         }
     }
     ?>
-    <script>
-        $('#inicio').on('click', () => (window.location.href = "index.php"));
-        $('#buscar').on('click', () => {
-            window.location.href = "buscar.php"
-        });
-        $('#listado').on('click', () => {
-            window.location.href = "listado.php"
-        });
-        $('#nuevo').on('click', () => {
-            window.location.href = "nuevo.php"
-        });
-        $('#categorias').on('click', () => {
-            window.location.href = "ListaCategorias.php"
-        });
-
-    </script>
+    
 </body>
 
 </html>
