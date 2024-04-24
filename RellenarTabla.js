@@ -19,7 +19,7 @@ class RellenarTabla {
     }
 
 
-  AMDaDMA(fecha) {
+  static AMDaDMA(fecha) {
         return fecha.split('-').reverse().join('-');
     }
 }
