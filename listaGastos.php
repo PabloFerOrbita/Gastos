@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="RellenarTabla.js"></script>
+    <script src="Mensajes.js"></script>
     <title>Document</title>
 </head>
 
@@ -48,27 +49,16 @@
             success: (data) => {
 
                 if (data.length > 0) {
-                   RellenarTabla.RellenarGastos(data)
+                    RellenarTabla.RellenarGastos(data)
                 } else {
-                    $('#mensaje').empty();
-                    $('#mensaje').removeClass();
-                    $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                    $('#mensaje').append('<h3>No se ha obtenido ningún dato</h3>');
-                    setTimeout(() => {
-                        $('#mensaje').empty();
-                        $('#mensaje').removeClass();
-                    }, 2000)
+                    Mensajes.MensajeAdvertencia('No hay datos')
                 }
             },
             error: () => {
-                $('#mensaje').empty();
-                $('#mensaje').removeClass();
-                $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+                Mensajes.MensajeError('Error al conectarse al servidor');
 
             }
         })
-
     </script>
 </body>
 
