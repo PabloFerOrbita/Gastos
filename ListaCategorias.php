@@ -111,9 +111,7 @@
             })
         }
 
-        function MostrarTabla(data) {
-          
-        }
+        
     </script>
 </body>
 
