@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="RellenarTabla.js"></script>
     <title>Document</title>
 </head>
 
@@ -17,7 +18,21 @@
         <div id="mensaje"></div>
         <div class="container-fluid vh-100">
             <a class="btn btn-primary mb-3" href="nuevaCategoria.php">Crear Categoria</a>
-            <div class="h-50 overflow-auto" id='lista'>
+            <div class="h-50 overflow-auto">
+            <div class="container-fluid vh-100">
+            <div class="h-50 overflow-auto">
+                <div id='mensaje'></div>
+                <table class='table table-stripped table-bordered d-none' id='tabla'>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    <tbody id='cuerpoTabla'>
+                    </tbody>
+                    </thead>
+                </table>
 
             </div>
 
@@ -33,10 +48,11 @@
 
             },
             success: (data) => {
-                MostrarTabla(data);
+                RellenarTabla.RellenarCategorias(data);
                 $('.eliminar').on('click', eliminar);
             },
             error: () => {
+                $('#tabla').addClass('d-none');
                 $('#mensaje').empty();
                 $('#mensaje').removeClass();
                 $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
@@ -96,19 +112,7 @@
         }
 
         function MostrarTabla(data) {
-            let tabla = $('<table class="table table-striped table-bordered">');
-            let encabezado = $('<thead>');
-            $(encabezado).append('<tr><th>Nombre</th><th>Editar</th><th>Eliminar</th></tr>');
-            let cuerpo = $('<tbody>');
-            data.forEach(element => {
-                let fila = $(`<tr id="fila${element.id}">`);
-                $(fila).append(`<td>${element.nombre.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a class="btn btn-primary" href="modificarCategoria.php?id=${element.id}">Editar</a></td><td><button class="btn btn-danger eliminar" id="${element.id}">Eliminar</button></td>`);
-                $(cuerpo).append(fila);
-            })
-
-            $(tabla).append(encabezado);
-            $(tabla).append(cuerpo);
-            $('#lista').append(tabla);
+          
         }
     </script>
 </body>
