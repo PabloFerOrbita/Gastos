@@ -7,10 +7,10 @@ class RellenarTabla {
         data.forEach(element => {
             let fila = $('<tr>');
             if (categorias.length > 0) {
-                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
-            } else {
                 let categoria = categorias.find(categoria => categoria.id == element.categoria_id);
-                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
+                $(fila).append(`<td>${this.AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
+            } else {
+                $(fila).append(`<td>${this.AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
             }
             $('#cuerpoTabla').append(fila);
 
@@ -18,7 +18,8 @@ class RellenarTabla {
         $('#tabla').removeClass('d-none');
     }
 
-    AMDaDMA(fecha) {
+
+  AMDaDMA(fecha) {
         return fecha.split('-').reverse().join('-');
     }
 }
