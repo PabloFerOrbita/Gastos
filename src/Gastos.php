@@ -8,6 +8,13 @@ if (isset($_POST['accion'])) {
 
             echo json_encode($Gasto->obtener_todos());
             break;
+        case 'obtener':
+            if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+                echo json_encode($Gasto->obtener($_POST['filtro'], $_POST['valor']));
+            } else {
+                echo json_encode($Gasto->obtener());
+            }
+            break;
         case 'eliminar':
             if (isset($_POST['id'])) {
                 echo json_encode($Gasto->eliminar_gasto($_POST['id']));
@@ -52,6 +59,22 @@ class Gastos
     {
         $this->db = new Database('contab', 'localhost', 'root', '');
     }
+
+      /**
+     * Obtiene los datos de la tabla gastos según el filtro que se aplique.
+     * 
+     * @param string $filter
+     * [opcional] El campo a partir del cuál se quieren filtrar los datos
+     * @param mixed $valor
+     * [opcional] El valor que debe tener el campo de filtro
+     * @return array
+     * Devuelve un array con los datos obtenidos o con un mensaje de error.
+     */
+
+     public function obtener(string $filter = '', mixed $valor = ''): array
+     {
+         return $this->db->obtener_datos('categorias', [], $filter, $valor);
+     }
 
     /**
      * Obtiene todos los datos de la tabla gastos
