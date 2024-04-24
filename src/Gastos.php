@@ -73,7 +73,7 @@ class Gastos
 
      public function obtener(string $filter = '', mixed $valor = ''): array
      {
-         return $this->db->obtener_datos('categorias', [], $filter, $valor);
+         return $this->db->obtener_datos('gastos', [], $filter, $valor);
      }
 
     /**
