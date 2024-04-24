@@ -35,6 +35,14 @@
             success: (data) => {
                 MostrarTabla(data);
                 $('.eliminar').on('click', eliminar);
+            },
+            error: () => {
+                $('#mensaje').empty();
+                $('#mensaje').removeClass();
+                $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+
+
             }
         })
 
@@ -72,6 +80,17 @@
                         }, 2000)
 
                     }
+                },
+                error: () => {
+                    $('#mensaje').empty();
+                    $('#mensaje').removeClass();
+                    $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                    $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+                    setTimeout(() => {
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                    }, 2000)
+
                 }
             })
         }

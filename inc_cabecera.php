@@ -38,7 +38,7 @@
                 $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $conexion;
             } catch (PDOException $e) {
-                echo '<div class="p-3 m-3 bg-danger-subtle"><h3>Ha habido un error al conectarse a la base de datos</h3></div> ';
+                echo '<div class="p-3 m-3 bg-danger-subtle"><h3>Error al conectarse al servidor</h3></div> ';
                 die;
             }
         }
