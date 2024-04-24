@@ -11,20 +11,43 @@
 <body>
     <?php
     require_once('inc_cabecera.php');
-    $cuenta = Inc_cabecera::contar();
-    
-    echo '<h3 class="m-1">Bienvenido a mi contabilidad doméstica, actualmente hay ' . $cuenta;
-    if($cuenta != 1){
-        echo ' gastos existentes';
-    } else{
-        echo ' gasto existente';
-    }
-    echo '</h3>';
-
-
+    ?>
+    <h3 class="m-1" id='titulo'></h3>
+    <?php
     require_once('inc_pie.php');
     ?>
+<script>
+     $.ajax({
+                method: 'POST',
+                url: 'src/Categorias.php',
+                dataType: 'json',
+                data: {
+                    'accion': 'total',
 
+                },
+                success: (data) => {
+                    if (data !== null){
+                        $('#titulo').text(`Bienvenido a mi contabilidad doméstica, actualmente hay ${data} ${data == 1 ? 'gasto existente' : 'gastos existentes' }.`);
+                    } else{
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                        $('#mensaje').append('<h3>Ha habido un error a la hora de obtener el total de gastos</h3>');
+                        setTimeout(() => {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
+                        }, 2000)
+                    }
+                },
+                error: () =>{
+                    $('#mensaje').empty();
+                    $('#mensaje').removeClass();
+                    $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                    $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+                    
+                }
+            })
+</script>
 </body>
 
 </html>
