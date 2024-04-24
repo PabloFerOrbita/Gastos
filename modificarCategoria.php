@@ -34,6 +34,10 @@
 
         </div>
     </div>
+    <?php
+
+    require_once('inc_pie.php');
+    ?>
 </body>
 <script>
     var id = <?php if (isset($_GET['id'])) {
