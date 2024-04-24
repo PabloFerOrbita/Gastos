@@ -11,7 +11,7 @@ class Mensajes {
         }, 2000)
     }
 
-    static MensajeError(mensaje) {
+    static MensajeAdvertencia(mensaje) {
         $('#mensaje').empty();
         $('#mensaje').removeClass();
         $('#mensaje').addClass('p-3 m-3 bg-warning-subtle');
