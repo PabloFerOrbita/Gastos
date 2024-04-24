@@ -52,7 +52,7 @@
                     });
                     data.forEach(element => {
                         let fila = $('<tr>');
-                        $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificar.php?ID=${element.id}">Modificar</a></td>`)
+                        $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificar.php?id=${element.id}">Modificar</a></td>`)
                         $('#cuerpoTabla').append(fila);
                     })
                     $('#tabla').removeClass('d-none');
