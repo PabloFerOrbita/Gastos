@@ -123,7 +123,7 @@
             data.forEach(element => {
                 categoria = categorias.find(categoria => categoria.id == element.categoria_id)
                 let fila = $('<tr>');
-                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificar.php?id=${element.id}">Modificar</a></td>`)
+                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
                 $('#cuerpoTabla').append(fila);
             })
             $('#tabla').removeClass('d-none');
