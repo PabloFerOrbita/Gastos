@@ -15,6 +15,12 @@ if (isset($_POST['accion'])) {
                 echo json_encode($Gasto->obtener());
             }
             break;
+        case 'obtener_gasto':
+            if(isset($_POST['id'])){
+                echo json_encode($Gasto->obtener($_POST['id']));
+            } else{
+                echo json_encode('Error: se debe especificar un id');
+            }
         case 'eliminar':
             if (isset($_POST['id'])) {
                 echo json_encode($Gasto->eliminar_gasto($_POST['id']));
@@ -110,7 +116,7 @@ class Gastos
 
     public function obtener_gasto(int $ID): array
     {
-        return $this->db->obtener_datos($this->tabla, [], 'ID', $ID);
+        return $this->db->obtener_datos($this->tabla, [], 'id', $ID);
     }
 
     /**
