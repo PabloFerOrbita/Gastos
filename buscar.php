@@ -53,19 +53,19 @@
     <script>
         var categorias = [];
         $.ajax({
-                method: 'POST',
-                url: 'src/Categorias.php',
-                dataType: 'json',
-                data: {
-                    'accion': 'obtener',
-  
+            method: 'POST',
+            url: 'src/Categorias.php',
+            dataType: 'json',
+            data: {
+                'accion': 'obtener',
 
-                },
-                success: (data) => {
-                    categorias = data;
-                    
-                }
-            })
+
+            },
+            success: (data) => {
+                categorias = data;
+
+            }
+        })
         $('#formulario').on('submit', ((e) => {
             if (jQuery.trim($('#busqueda').val()).length == 0) {
                 e.preventDefault();
@@ -86,7 +86,7 @@
                     success: data => {
                         $('#cuerpoTabla').empty();
                         if (data.length > 0) {
-                           
+
                             MostrarTabla(data);
                         } else {
                             $('#tabla').addClass('d-none');
@@ -123,7 +123,7 @@
             data.forEach(element => {
                 categoria = categorias.find(categoria => categoria.id == element.categoria_id)
                 let fila = $('<tr>');
-                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificar.php?ID=${element.id}">Modificar</a></td>`)
+                $(fila).append(`<td>${AMDaDMA(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificar.php?ID=${element.id}">Modificar</a></td>`)
                 $('#cuerpoTabla').append(fila);
             })
             $('#tabla').removeClass('d-none');
@@ -133,8 +133,6 @@
         function AMDaDMA(fecha) {
             return fecha.split('-').reverse().join('-');
         }
-
-         
     </script>
 </body>
 
