@@ -15,45 +15,47 @@
     ?>
     <div class="vh-100">
         <h4 class="m-2">Has elegido la opción Nuevo</h4>
+
+
+        <div id='mensaje'></div>
+        <div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">
+
+            <div class="col-3 border border-2 p-5 border-danger">
+                <form method="POST" id='formulario'>
+                    <div class="mb-3 row g-2 ">
+                        <div class="col-6">
+                            <label for="fecha" class="form-label">Fecha del gasto</label>
+                            <input type="date" name="fecha" id="fecha" class="form-control" required></input>
+                        </div>
+                        <div class="col-6">
+                            <label for="importe" class="form-label" required>Importe del gasto</label>
+                            <input type="number" name="importe" min="0.01" id="importe" max="99999999" step="0.01" class="form-control" required></input>
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row g-2">
+                        <div class="col-12">
+                            <label for="descripcion" class="form-label">Descripcion del gasto</label>
+                            <input type="text" id="descripcion" name="descripcion" class="form-control" pattern="^[^\s]+.*$" required></input>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row g-2">
+                        <div class="col-12">
+                            <label for="categoria" class="form-label">Categoria del gasto</label><br>
+                            <select name="categoria" id="categoria" class="form-control " required>
+                                <option value="" disabled selected>Elige una opción</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-danger w-100">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <?php
 
-        if (isset($_POST['descripcion']) && isset($_POST['categoria']) && isset($_POST['fecha']) && isset($_POST['importe'])) {
-            echo Inc_cabecera::insertar("INSERT INTO gastos VALUES (NULL, '" . $_POST['fecha'] . "', " . $_POST['importe'] . ", '" . str_replace("'", "''", $_POST['descripcion']) . "', " . $_POST['categoria'] .  ")");
-        }
-
-        echo '<div class="container-fluid d-flex flex-row justify-content-center align-items-center h-50">';
-        echo '<div class="col-3 border border-2 p-5 border-danger">';
-        echo '<form method="POST">';
-        echo '<div class = "mb-3 row g-2">';
-        echo '<div class="col-12">';
-        echo '<label for="descripcion" class="form-label">Descripcion del gasto</label>';
-        echo '<input type ="text" id="descripcion" name="descripcion" class="form-control" pattern="^[^\s]+.*$" required></input>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class= "mb-3 row g-2 ">';
-        echo '<div class="col-6">';
-        echo '<label for="importe" class="form-label" required>Importe del gasto</label>';
-        echo '<input type="number" name="importe" min="0.01" id="importe"  max="99999999" step="0.01" class="form-control" required></input>';
-        echo '</div>';
-        echo '<div class ="col-6">';
-        echo '<label for="categoria" class="form-label">Categoria del gasto</label><br>';
-        echo '<select name="categoria" id="categoria" class="form-control " required>
-    <option value=""  disabled selected >Elige una opción</option>
-    </select>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class ="mb-3 row g-2">';
-        echo '<div class = "col-12">';
-        echo '<label for="fecha" class="form-label">Fecha del gasto</label>';
-        echo '<input type="date" name="fecha" id="fecha" class="form-control" required></input>';
-        echo '</div>';
-        echo '</div>';
-        echo '<div class="col-12">';
-        echo '<button type="submit" class="btn btn-danger w-100">Guardar</button>';
-        echo '</div>';
-        echo '</form>';
-        echo '</div>';
-        echo '</div>';
         require_once('inc_pie.php');
         ?>
     </div>
@@ -92,6 +94,58 @@
 
         $('#importe').on('blur', (e) => {
             $(e.target).val() == 0 && $(e.target).val(0.01);
+        })
+
+        $('#formulario').on('submit', (e) => {
+            e.preventDefault();
+            var valores = [];
+            $('#formulario').serializeArray().forEach(element => {
+                valores.push(element.value);
+            })
+            $.ajax({
+                method: 'POST',
+                url: 'src/Gastos.php',
+                dataType: 'json',
+                data: {
+                    'accion': 'aniadir',
+                    'datos': valores
+
+                },
+                success: (data) => {
+                    if (data) {
+                        $('#formulario').trigger('reset');
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                        $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
+                        $('#mensaje').append('<h3>Se han añadido los datos</h3>');
+                        setTimeout(() => {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
+                        }, 2000)
+                    } else {
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                        $('#mensaje').append('<h3>Ha habido un error a la hora de añadir los datos</h3>');
+                        setTimeout(() => {
+                            $('#mensaje').empty();
+                            $('#mensaje').removeClass();
+                        }, 2000)
+                    }
+                },
+                error: () => {
+                    $('#mensaje').empty();
+                    $('#mensaje').removeClass();
+                    $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+                    $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+                    setTimeout(() => {
+                        $('#mensaje').empty();
+                        $('#mensaje').removeClass();
+                    }, 2000)
+
+                }
+            })
+
         })
     </script>
 </body>
