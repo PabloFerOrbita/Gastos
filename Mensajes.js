@@ -1,6 +1,6 @@
-class Mensajes{
+class Mensajes {
 
-    static MensajeExito(mensaje){
+    static MensajeExito(mensaje) {
         $('#mensaje').empty();
         $('#mensaje').removeClass();
         $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
@@ -10,4 +10,16 @@ class Mensajes{
             $('#mensaje').removeClass();
         }, 2000)
     }
+
+    static MensajeError(mensaje) {
+        $('#mensaje').empty();
+        $('#mensaje').removeClass();
+        $('#mensaje').addClass('p-3 m-3 bg-warning-subtle');
+        $('#mensaje').append(`<h3>${mensaje}</h3>`);
+        setTimeout(() => {
+            $('#mensaje').empty();
+            $('#mensaje').removeClass();
+        }, 2000)
+    }
+
 }
