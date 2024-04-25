@@ -53,7 +53,7 @@
 
                     });
                 } else {
-                    Mensajes.MensajeError('Ha habido un error a la hora de contar los gastos');
+                    Mensajes.MensajeError('Ha habido un error a la hora de contar las categorías');
                 }
             },
             error: () => {
