@@ -69,6 +69,7 @@
                 'clase': 'Categorias',
                 'accion': 'obtener',
 
+
             },
             success: data => {
                 data.forEach(element => {
@@ -110,6 +111,7 @@
                 dataType: 'json',
                 data: {
                     'clase': 'Gastos',
+                    'accion':'aniadir',
                     'datos': valores
 
                 },
