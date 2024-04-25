@@ -49,9 +49,10 @@
     if (id !== null) {
         $.ajax({
             method: 'POST',
-            url: 'src/Categorias.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'categorias',
                 'accion': 'obtener',
                 'filtro': 'id',
                 'valor': id
