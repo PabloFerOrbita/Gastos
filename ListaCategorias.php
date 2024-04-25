@@ -46,13 +46,13 @@
             data: {
                 'clase': 'categorias',
                 'accion': 'obtener',
-                'filtro':'',
-                'valor':'',
+                'filtro': '',
+                'valor': '',
 
             },
             success: (data) => {
                 RellenarTabla.rellenarCategorias(data);
-                $('.eliminar').on('click', eliminar);
+                $('.eliminar').click(comprobarGastoRelacionado);
             },
             error: () => {
                 $('#tabla').addClass('d-none');
@@ -62,9 +62,26 @@
             }
         })
 
+        function comprobarGastoRelacionado(e) {
+            $.ajax({
+                method: 'POST',
+                url: 'manejarLLamadas.php',
+                dataType: 'json',
+                data: {
+                    'clase': 'gastos',
+                    'accion': 'obtener',
+                    'filtro': 'categoria_id',
+                    'valor': e.target.id,
 
+                },
+                success: (data) => {
+                    data.length == 0 ? eliminar(e.target.id) : Mensajes.mensajeAdvertencia('La categoría no se puede borrar: hay gastos que la tienen'); 
+                }
+            });
+        }
 
-        function eliminar(e) {
+        function eliminar(id) {
+
             $.ajax({
                 method: 'POST',
                 url: 'manejarLLamadas.php',
@@ -72,12 +89,12 @@
                 data: {
                     'clase': 'categorias',
                     'accion': 'eliminar',
-                    'id': e.target.id
+                    'id': id
 
                 },
                 success: (data) => {
                     if (data) {
-                        $(`#fila${e.target.id}`).remove();
+                        $(`#fila${id}`).remove();
                         Mensajes.mensajeExito('Categoría eliminada');
                     } else {
                         Mensajes.mensajeError('Error al eliminar la categoría')
