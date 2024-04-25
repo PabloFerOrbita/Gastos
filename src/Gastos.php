@@ -16,9 +16,9 @@ if (isset($_POST['accion'])) {
             }
             break;
         case 'obtener_gasto':
-            if(isset($_POST['id'])){
+            if (isset($_POST['id'])) {
                 echo json_encode($Gasto->obtener_gasto($_POST['id']));
-            } else{
+            } else {
                 echo json_encode('Error: se debe especificar un id');
             }
             break;
@@ -30,12 +30,8 @@ if (isset($_POST['accion'])) {
             }
             break;
         case 'actualizar':
-            if (isset($_POST['datos'])) {
-                if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+            if (isset($_POST['datos']) && isset($_POST['filtro']) && isset($_POST['valor'])) {
                     echo json_encode($Gasto->actualizar($_POST['datos'], $_POST['filtro'], $_POST['valor']));
-                } else {
-                    echo json_encode($Gasto->actualizar($_POST['datos']));
-                }
             } else {
                 echo json_encode('Error: no se han introducido datos');
             }
@@ -67,7 +63,7 @@ class Gastos
         $this->db = new Database('contab', 'localhost', 'root', '');
     }
 
-      /**
+    /**
      * Obtiene los datos de la tabla gastos según el filtro que se aplique.
      * 
      * @param string $filter
@@ -78,10 +74,17 @@ class Gastos
      * Devuelve un array con los datos obtenidos o con un mensaje de error.
      */
 
-     public function obtener(string $filter = '', mixed $valor = ''): array
-     {
-         return $this->db->obtener_datos('gastos', [], $filter, $valor);
-     }
+    public function obtener(string $filter = '', mixed $valor = '', $categorias = false): array
+    {
+        $join = '';
+        $select = [];
+        if ($categorias) {
+            $join = 'JOIN categorias WHERE gastos.categoria_id = categorias.id';
+            $select = ['gastos.*', 'categorias.nombre as categoria'];
+        }
+
+        return $this->db->obtener_datos('gastos', $select, $filter, $valor, $join);
+    }
 
     /**
      * Obtiene todos los datos de la tabla gastos

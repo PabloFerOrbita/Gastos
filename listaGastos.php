@@ -40,9 +40,10 @@
     <script>
         $.ajax({
             method: 'POST',
-            url: 'src/Gastos.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'Gastos',
                 'accion': 'obtener_todos',
 
             },

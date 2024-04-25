@@ -21,20 +21,20 @@
     <script>
         var categorias;
         $.ajax({
-            method: 'POST',
-            url: 'src/Categorias.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'Categorias',
                 'accion': 'total'
             },
             success: (data) => {
                 if (data !== null) {
                     categorias = data;
                     $.ajax({
-                        method: 'POST',
-                        url: 'src/Gastos.php',
+                        url: 'manejarLLamadas.php',
                         dataType: 'json',
                         data: {
+                            'clase': 'Gastos',
                             'accion': 'total',
 
                         },

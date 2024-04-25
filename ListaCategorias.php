@@ -41,9 +41,10 @@
     <script>
         $.ajax({
             method: 'POST',
-            url: 'src/Categorias.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'categorias',
                 'accion': 'obtener'
 
             },
@@ -64,9 +65,10 @@
         function eliminar(e) {
             $.ajax({
                 method: 'POST',
-                url: 'src/Categorias.php',
+                url: 'manejarLLamadas.php',
                 dataType: 'json',
                 data: {
+                    'clase': 'categorias',
                     'accion': 'eliminar',
                     'id': e.target.id
 
@@ -81,7 +83,7 @@
                     }
                 },
                 error: () => {
-                  Mensajes.MensajeError('Error al conectarse al servidor');
+                    Mensajes.MensajeError('Error al conectarse al servidor');
                 }
             })
         }

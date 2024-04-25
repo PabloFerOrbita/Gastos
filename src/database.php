@@ -47,7 +47,7 @@ class Database
      * El método devolverá un array con los campos resultantes de la búsqueda, o 
      * un array vacío en el caso de no encontrar nada
      */
-    public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = ''): array
+    public function obtener_datos(string $tabla, array $campos = [], string $parametroBusqueda = '', mixed $valorAbuscar = '', string $join = ''): array
     {
         $con = self::conexion();
         $sql = 'SELECT ';
@@ -56,9 +56,9 @@ class Database
         } else {
             $sql .= '*';
         }
-        $sql .= ' FROM ' . $tabla;
+        $sql .= ' FROM ' . $tabla . $join;
 
-        if ($parametroBusqueda !== '') {
+        if ($parametroBusqueda !== '' && $valorAbuscar !== '') {
             $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
         }
         $query = $con->prepare($sql);
@@ -119,7 +119,7 @@ class Database
      * Devuelve true si se ha modificado algún parámetro, false si ningún registro se ha visto afectado y NULL si ha habido un error.
      */
 
-    public function modificar(string $tabla, array $camposAmodificar, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?bool
+    public function modificar(string $tabla, array $camposAmodificar, string $parametroBusqueda = '', mixed $valorAbuscar = ''): ?bool
     {
         $con = self::conexion();
         if (count($camposAmodificar) > 0) {
@@ -137,7 +137,7 @@ class Database
                     $sql .= ', ';
                 }
             }
-            if ($parametroBusqueda !== '') {
+            if ($parametroBusqueda !== '' && $valorAbuscar !== '') {
                 $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
             }
             $query = $con->prepare($sql);
@@ -169,11 +169,11 @@ class Database
      * @return null|int
      * Devuelve el un int con el total de tablas en caso de funcionar todo o NULL en caso de haber algún error
      */
-    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = 0): ?int
+    public function obtener_total(string $tabla, string $parametroBusqueda = '', mixed $valorAbuscar = ''): ?int
     {
         $con = self::conexion();
         $sql = 'SELECT COUNT(*) as total FROM ' . $tabla;
-        if ($parametroBusqueda !== '') {
+        if ($parametroBusqueda !== '' && $valorAbuscar !== '') {
             $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
         }
         $query = $con->prepare($sql);
@@ -280,5 +280,6 @@ class Database
         }
 
         return '';
+
     }
 }

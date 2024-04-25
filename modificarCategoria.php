@@ -79,9 +79,10 @@
         e.preventDefault();
         $.ajax({
             method: 'POST',
-            url: 'src/Categorias.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'Categorias',
                 'accion': 'actualizar',
                 'datos': {
                     'nombre': $('#nombre').val()

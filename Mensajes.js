@@ -1,31 +1,21 @@
 class Mensajes {
 
     static MensajeExito(mensaje) {
-        $('#mensaje').empty();
-        $('#mensaje').removeClass();
-        $('#mensaje').addClass('p-3 m-3 bg-success-subtle');
-        $('#mensaje').append(`<h3>${mensaje}</h3>`);
-        setTimeout(() => {
-            $('#mensaje').empty();
-            $('#mensaje').removeClass();
-        }, 2000)
+        this.Mensaje(mensaje, 'p-3 m-3 bg-success-subtle')
     }
 
     static MensajeAdvertencia(mensaje) {
-        $('#mensaje').empty();
-        $('#mensaje').removeClass();
-        $('#mensaje').addClass('p-3 m-3 bg-warning-subtle');
-        $('#mensaje').append(`<h3>${mensaje}</h3>`);
-        setTimeout(() => {
-            $('#mensaje').empty();
-            $('#mensaje').removeClass();
-        }, 2000)
+        this.Mensaje(mensaje, 'p-3 m-3 bg-warning-subtle')
     }
 
     static MensajeError(mensaje){
+        this.Mensaje(mensaje, 'p-3 m-3 bg-danger-subtle')
+    }
+
+    static Mensaje(mensaje, clases){
         $('#mensaje').empty();
         $('#mensaje').removeClass();
-        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
+        $('#mensaje').addClass(clases);
         $('#mensaje').append(`<h3>${mensaje}</h3>`);
         setTimeout(() => {
             $('#mensaje').empty();
@@ -33,5 +23,4 @@ class Mensajes {
         }, 2000)
     }
     
-
-}
+   }

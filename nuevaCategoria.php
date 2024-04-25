@@ -43,9 +43,10 @@
                 })
                 $.ajax({
                     method: 'POST',
-                    url: 'src/Categorias.php',
+                    url: 'manejarLLamadas.php',
                     dataType: 'json',
                     data: {
+                        'clase': 'Categorias',
                         'accion': 'aniadir',
                         'datos': valores
 
@@ -55,13 +56,13 @@
                             $('#formulario').trigger('reset');
                             Mensajes.MensajeExito('Se ha añadido la categoría')
                         } else {
-                           Mensajes.MensajeError('Ha habido un error al añadir la categoría')
+                            Mensajes.MensajeError('Ha habido un error al añadir la categoría')
                         }
                     },
-                    error: () => {
-                    Mensajes.MensajeError('Error al conectarse al servidor');
+                    error: (data) => {
+                        Mensajes.MensajeError(data);
 
-                }
+                    }
                 })
             })
         </script>

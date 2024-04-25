@@ -62,10 +62,10 @@
     </div>
     <script>
         $.ajax({
-            method: 'POST',
-            url: 'src/Categorias.php',
+            url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
+                'clase': 'Categorias',
                 'accion': 'obtener',
 
             },
@@ -104,11 +104,10 @@
                 valores.push(element.value);
             })
             $.ajax({
-                method: 'POST',
-                url: 'src/Gastos.php',
+                url: 'manejarLLamadas.php',
                 dataType: 'json',
                 data: {
-                    'accion': 'aniadir',
+                    'clase': 'Gastos',
                     'datos': valores
 
                 },
@@ -117,7 +116,7 @@
                         $('#formulario').trigger('reset');
                         Mensajes.MensajeExito('Se ha añadido el gasto')
                     } else {
-                       Mensajes.MensajeError('Ha habido un error a la hora de añadir el gasto')
+                        Mensajes.MensajeError('Ha habido un error a la hora de añadir el gasto')
                     }
                 },
                 error: () => {

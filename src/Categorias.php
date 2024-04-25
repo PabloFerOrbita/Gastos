@@ -1,52 +1,5 @@
 <?php
 require_once('Database.php');
-
-if (isset($_POST['accion'])) {
-    $categoria = new Categorias();
-    switch ($_POST['accion']) {
-        case 'InstalarTabla':
-            echo json_encode($categoria->InstalarTabla());
-            break;
-        case 'obtener':
-            if (isset($_POST['filtro']) && isset($_POST['valor'])) {
-                echo json_encode($categoria->obtener($_POST['filtro'], $_POST['valor']));
-            } else {
-                echo json_encode($categoria->obtener());
-            }
-            break;
-        case 'eliminar':
-            if (isset($_POST['id'])) {
-                echo json_encode($categoria->eliminar($_POST['id']));
-            } else {
-                echo json_encode('Error: se debe especificar un id');
-            }
-            break;
-        case 'actualizar':
-            if (isset($_POST['datos'])) {
-                if (isset($_POST['filtro']) && isset($_POST['valor'])) {
-                    echo json_encode($categoria->actualizar($_POST['datos'], $_POST['filtro'], $_POST['valor']));
-                } else {
-                    echo json_encode($categoria->actualizar($_POST['datos']));
-                }
-            } else {
-                echo json_encode('Error: no se han introducido datos');
-            }
-            break;
-        case 'aniadir':
-            if (isset($_POST['datos'])) {
-                echo json_encode($categoria->aniadir($_POST['datos']));
-            } else {
-                echo json_encode('Error: no se han introducido datos');
-            }
-            break;
-        case 'total':
-            echo json_encode($categoria->total());
-            break;
-        default:
-            echo json_encode('La acción no existe');
-    }
-}
-
 class Categorias
 {
     private $tabla = 'categorias';
