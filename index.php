@@ -19,26 +19,49 @@
     require_once('inc_pie.php');
     ?>
     <script>
+        var categorias;
         $.ajax({
             method: 'POST',
             url: 'src/Categorias.php',
             dataType: 'json',
             data: {
-                'accion': 'total',
-
+                'accion': 'total'
             },
             success: (data) => {
                 if (data !== null) {
-                    $('#titulo').text(`Bienvenido a mi contabilidad doméstica, actualmente hay ${data} ${data == 1 ? 'gasto existente' : 'gastos existentes' }.`);
+                    categorias = data;
+                    $.ajax({
+                        method: 'POST',
+                        url: 'src/Gastos.php',
+                        dataType: 'json',
+                        data: {
+                            'accion': 'total',
+
+                        },
+                        success: (data) => {
+                            if (data !== null) {
+                                $('#titulo').text(`Bienvenido a mi contabilidad doméstica, actualmente existen ${data} ${data == 1 ? 'gasto' : 'gastos' } y ${categorias} ${categorias == 1 ? 'categoria' : 'categorias' } .`);
+                            } else {
+                                Mensajes.MensajeError('Ha habido un error a la hora de contar los gastos');
+                            }
+                        },
+                        error: () => {
+                            Mensajes.MensajeError('Error al conectarse al servidor');
+
+                        }
+
+
+                    });
                 } else {
                     Mensajes.MensajeError('Ha habido un error a la hora de contar los gastos');
                 }
             },
             error: () => {
                 Mensajes.MensajeError('Error al conectarse al servidor');
-
             }
-        })
+
+
+        });
     </script>
 </body>
 
