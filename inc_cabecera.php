@@ -16,8 +16,8 @@
     <header class="bg-danger p-2">
         <a id="inicio" class="btn btn-link text-white" href="index.php">Inicio</a>
         <a id="buscar" class="btn btn-link text-white" href="buscarGastos.php">Buscar</a>
-        <a id="listado" class="btn btn-link text-white" href="listaGastos.php">Listado</a>
-        <a id="nuevo" class="btn btn-link text-white" href="nuevoGasto.php">Nuevo</a>
+        <a id="listado" class="btn btn-link text-white" href="listaGastos.php">Gastos</a>
+        <a id="nuevo" class="btn btn-link text-white" href="nuevoGasto.php">Nuevo Gasto</a>
         <a id="categorias" class="btn btn-link text-white" href="ListaCategorias.php">Categorias</a>
 
         <h1 class="text-white" id='titulo-cabecera'></h1>

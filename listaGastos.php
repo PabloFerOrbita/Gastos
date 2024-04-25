@@ -15,7 +15,7 @@
     require_once('inc_cabecera.php');
     ?>
     <div class="m-2">
-        <h4 class="mb-5">Has elegido la opción Listado</h4>
+        <h4 class="mb-5">Has elegido la opción Gastos</h4>
         <div class="container-fluid vh-100">
             <div class="h-50 overflow-auto">
                 <div id='mensaje'></div>
