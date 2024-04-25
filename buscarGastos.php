@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="RellenarTabla.js"></script>
+    <script src='Mensajes.js'></script>
     <title>Document</title>
 </head>
 
@@ -53,20 +54,6 @@
     ?>
     <script>
         var categorias = [];
-        $.ajax({
-            method: 'POST',
-            url: 'src/Categorias.php',
-            dataType: 'json',
-            data: {
-                'accion': 'obtener',
-
-
-            },
-            success: (data) => {
-                categorias = data;
-
-            }
-        })
         $('#formulario').on('submit', ((e) => {
             if (jQuery.trim($('#busqueda').val()).length == 0) {
                 e.preventDefault();
@@ -75,36 +62,27 @@
                 e.preventDefault();
                 $.ajax({
                     method: 'POST',
-                    url: 'src/Gastos.php',
+                    url: 'manejarLLamadas.php',
                     dataType: 'json',
                     data: {
+                        'clase': 'gastos',
                         'accion': 'obtener',
                         'filtro': 'descripcion',
-                        'valor': $('#busqueda').val()
+                        'valor': $('#busqueda').val(),
+                        'join': true
 
 
                     },
                     success: data => {
                         $('#cuerpoTabla').empty();
                         if (data.length > 0) {
-                            RellenarTabla.RellenarGastos(data, categorias);
+                            RellenarTabla.rellenarGastos(data, categorias);
                         } else {
-                            $('#tabla').addClass('d-none');
-                            $('#mensaje').empty();
-                            $('#mensaje').removeClass();
-                            $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                            $('#mensaje').append('<h3>No se ha obtenido ningún dato</h3>');
-                            setTimeout(() => {
-                                $('#mensaje').empty();
-                                $('#mensaje').removeClass();
-                            }, 2000)
+                            Mensajes.mensajeAdvertencia('No existen gastos con esa descripción')
                         }
                     },
                     error: () => {
-                        $('#mensaje').empty();
-                        $('#mensaje').removeClass();
-                        $('#mensaje').addClass('p-3 m-3 bg-danger-subtle');
-                        $('#mensaje').append('<h3>Error al conectarse al servidor</h3>');
+                        Mensajes.mensajeError('Error al conectarse al servidor');
 
                     }
 
@@ -112,13 +90,6 @@
             }
             $('#busqueda').val('');
         }));
-
-
-
-
-       
-
-
     </script>
 </body>
 
