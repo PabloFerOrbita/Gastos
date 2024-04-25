@@ -1,7 +1,7 @@
 class RellenarTabla {
 
-    static rellenarGastos(data, categorias = []) {
-        if (data.length < 1){
+    static rellenarGastos(data) {
+        if (data.length < 1) {
             return;
         }
 
@@ -10,21 +10,16 @@ class RellenarTabla {
         });
         data.forEach(element => {
             let fila = $('<tr>');
-            if (categorias.length > 0) {
-                let categoria = categorias.find(categoria => categoria.id == element.categoria_id);
-                $(fila).append(`<td>${this.aniomesdia_a_diamesanio(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td>${categoria.nombre}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
-            } else {
-                $(fila).append(`<td>${this.aniomesdia_a_diamesanio(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td><td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
-            }
+            $(fila).append(`<td>${this.aniomesdia_a_diamesanio(element.fecha)}</td><td>${element.importe}€</td><td>${element.descripcion.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</td>${typeof element.categoria !== 'undefined' && `<td>${element.categoria}</td>`}<td><a type="button" class="btn btn-primary" href="modificarGasto.php?id=${element.id}">Modificar</a></td>`)
             $('#cuerpoTabla').append(fila);
 
         })
         $('#tabla').removeClass('d-none');
-        
+
     }
 
     static rellenarCategorias(data) {
-        if(data.length < 1){
+        if (data.length < 1) {
             return;
         }
 
