@@ -45,8 +45,7 @@
             data: {
                 'clase':'Gastos',
                 'accion': 'obtener',
-                'filtro':'',
-                'valor':''
+
 
             },
             success: (data) => {
