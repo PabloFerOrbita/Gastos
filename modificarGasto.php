@@ -75,9 +75,10 @@
 
             $.ajax({
                 method: 'POST',
-                url: 'src/Categorias.php',
+                url: 'manejarLLamadas.php',
                 dataType: 'json',
                 data: {
+                    'clase':'categorias',
                     'accion': 'obtener',
 
                 },
@@ -89,11 +90,13 @@
             });
             $.ajax({
                 method: 'POST',
-                url: 'src/Gastos.php',
+                url: 'manejarLlamadas.php',
                 dataType: 'json',
                 data: {
-                    'accion': 'obtener_gasto',
-                    'id': id
+                    'clase':'gastos',
+                    'accion': 'obtener',
+                    'filtro': 'id',
+                    'valor': id
 
                 },
                 success: data => {
@@ -148,9 +151,10 @@
             e.preventDefault();
             $.ajax({
                 method: 'POST',
-                url: 'src/Gastos.php',
+                url: 'manejarLLamadas.php',
                 dataType: 'json',
                 data: {
+                    'clase':'gastos',
                     'accion': 'actualizar',
                     'datos': {
                         'fecha': $('#fecha').val(),

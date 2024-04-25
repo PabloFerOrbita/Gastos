@@ -7,7 +7,7 @@ try {
     $clase = $reflectionClass->newInstanceArgs();
     switch ($_POST['accion']) {
         case 'obtener':
-            echo json_encode($clase->obtener(($_POST['filtro'] ?? ''), ($_POST['valor'] ?? ''), ($_POST['filtro'] ?? '')));
+            echo json_encode($clase->obtener(($_POST['filtro'] ?? ''), ($_POST['valor'] ?? ''), ($_POST['join'] ?? false)));
             break;
         case 'eliminar':
             if (isset($_POST['id'])) {
