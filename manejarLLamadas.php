@@ -3,7 +3,7 @@ require_once('src/Gastos.php');
 require_once('src/Categorias.php');
 
 try {
-    $reflectionClass = new ReflectionClass($_POST['accion']);
+    $reflectionClass = new ReflectionClass($_POST['clase']);
     $clase = $reflectionClass->newInstanceArgs();
     switch ($_POST['accion']) {
         case 'obtener':

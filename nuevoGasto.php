@@ -62,6 +62,7 @@
     </div>
     <script>
         $.ajax({
+            method: 'POST',
             url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
@@ -104,6 +105,7 @@
                 valores.push(element.value);
             })
             $.ajax({
+                method: 'POST',
                 url: 'manejarLLamadas.php',
                 dataType: 'json',
                 data: {

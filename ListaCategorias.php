@@ -45,7 +45,9 @@
             dataType: 'json',
             data: {
                 'clase': 'categorias',
-                'accion': 'obtener'
+                'accion': 'obtener',
+                'filtro':'',
+                'valor':'',
 
             },
             success: (data) => {

@@ -43,8 +43,10 @@
             url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
-                'clase': 'Gastos',
-                'accion': 'obtener_todos',
+                'clase':'Gastos',
+                'accion': 'obtener',
+                'filtro':'',
+                'valor':''
 
             },
             success: (data) => {
