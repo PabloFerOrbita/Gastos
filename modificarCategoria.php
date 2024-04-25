@@ -67,7 +67,7 @@
             },
             error: () => {
                 $('#cuerpo').empty();
-                Mensajes.MensajeError('Error al conectarse al servidor');
+                Mensajes.mensajeError('Error al conectarse al servidor');
             }
         });
     } else {
@@ -94,17 +94,17 @@
             success: (data) => {
                 if (data !== null) {
                     if (data) {
-                        Mensajes.MensajeExito('Se ha actualizado el registro');
+                        Mensajes.mensajeExito('Se ha actualizado el registro');
 
                     } else {
-                        Mensajes.MensajeAdvertencia('No se ha actualizado nigún registro');
+                        Mensajes.mensajeAdvertencia('No se ha actualizado nigún registro');
                     }
                 } else {
-                    Mensajes.MensajeError('Error a la hora de actualizar el registro');
+                    Mensajes.mensajeError('Error a la hora de actualizar el registro');
                 }
             },
             error: () => {
-                Mensajes.MensajeError('Error al conectarse al servidor');
+                Mensajes.mensajeError('Error al conectarse al servidor');
             }
         })
 

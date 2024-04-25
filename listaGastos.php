@@ -54,11 +54,11 @@
                 if (data.length > 0) {
                     RellenarTabla.rellenarGastos(data)
                 } else {
-                    Mensajes.MensajeAdvertencia('No hay datos')
+                    Mensajes.mensajeAdvertencia('No hay datos')
                 }
             },
             error: () => {
-                Mensajes.MensajeError('Error al conectarse al servidor');
+                Mensajes.mensajeError('Error al conectarse al servidor');
 
             }
         })

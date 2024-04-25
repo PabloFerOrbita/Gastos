@@ -42,22 +42,22 @@
                             if (data !== null) {
                                 $('#titulo').text(`Bienvenido a mi contabilidad doméstica, actualmente existen ${data} ${data == 1 ? 'gasto' : 'gastos' } y ${categorias} ${categorias == 1 ? 'categoria' : 'categorias' } .`);
                             } else {
-                                Mensajes.MensajeError('Ha habido un error a la hora de contar los gastos');
+                                Mensajes.mensajeError('Ha habido un error a la hora de contar los gastos');
                             }
                         },
                         error: () => {
-                            Mensajes.MensajeError('Error al conectarse al servidor');
+                            Mensajes.mensajeError('Error al conectarse al servidor');
 
                         }
 
 
                     });
                 } else {
-                    Mensajes.MensajeError('Ha habido un error a la hora de contar las categorías');
+                    Mensajes.mensajeError('Ha habido un error a la hora de contar las categorías');
                 }
             },
             error: () => {
-                Mensajes.MensajeError('Error al conectarse al servidor');
+                Mensajes.mensajeError('Error al conectarse al servidor');
             }
 
 

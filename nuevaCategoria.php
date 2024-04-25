@@ -54,13 +54,13 @@
                     success: (data) => {
                         if (data) {
                             $('#formulario').trigger('reset');
-                            Mensajes.MensajeExito('Se ha añadido la categoría')
+                            Mensajes.mensajeExito('Se ha añadido la categoría')
                         } else {
-                            Mensajes.MensajeError('Ha habido un error al añadir la categoría')
+                            Mensajes.mensajeError('Ha habido un error al añadir la categoría')
                         }
                     },
                     error: (data) => {
-                        Mensajes.MensajeError(data);
+                        Mensajes.mensajeError(data);
 
                     }
                 })

@@ -116,13 +116,13 @@
                 success: (data) => {
                     if (data) {
                         $('#formulario').trigger('reset');
-                        Mensajes.MensajeExito('Se ha añadido el gasto')
+                        Mensajes.mensajeExito('Se ha añadido el gasto')
                     } else {
-                        Mensajes.MensajeError('Ha habido un error a la hora de añadir el gasto')
+                        Mensajes.mensajeError('Ha habido un error a la hora de añadir el gasto')
                     }
                 },
                 error: () => {
-                    Mensajes.MensajeError('Error al conectarse al servidor')
+                    Mensajes.mensajeError('Error al conectarse al servidor')
                 }
             })
 

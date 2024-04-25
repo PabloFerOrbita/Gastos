@@ -1,18 +1,18 @@
 class Mensajes {
 
-    static MensajeExito(mensaje) {
-        this.Mensaje(mensaje, 'p-3 m-3 bg-success-subtle')
+    static mensajeExito(mensaje) {
+        this.mensaje(mensaje, 'p-3 m-3 bg-success-subtle')
     }
 
-    static MensajeAdvertencia(mensaje) {
-        this.Mensaje(mensaje, 'p-3 m-3 bg-warning-subtle')
+    static mensajeAdvertencia(mensaje) {
+        this.mensaje(mensaje, 'p-3 m-3 bg-warning-subtle')
     }
 
-    static MensajeError(mensaje){
-        this.Mensaje(mensaje, 'p-3 m-3 bg-danger-subtle')
+    static mensajeError(mensaje){
+        this.mensaje(mensaje, 'p-3 m-3 bg-danger-subtle')
     }
 
-    static Mensaje(mensaje, clases){
+    static mensaje(mensaje, clases){
         $('#mensaje').empty();
         $('#mensaje').removeClass();
         $('#mensaje').addClass(clases);

@@ -113,7 +113,7 @@
                     }
                 },
                 error: () => {
-                    Mensajes.MensajeError('Error al conectarse al servidor');
+                    Mensajes.mensajeError('Error al conectarse al servidor');
 
 
                 }
@@ -165,16 +165,16 @@
                 success: (data) => {
                     if (data !== null) {
                         if (data) {
-                            Mensajes.MensajeExito('Se han actualizado los datos');
+                            Mensajes.mensajeExito('Se han actualizado los datos');
                         } else {
-                            Mensajes.MensajeAdvertencia('No se han actualizado los datos');
+                            Mensajes.mensajeAdvertencia('No se han actualizado los datos');
                         }
                     } else {
-                        Mensajes.MensajeError('Error a la hora de actualizar los datos');
+                        Mensajes.mensajeError('Error a la hora de actualizar los datos');
                     }
                 },
                 error: () => {
-                    Mensajes.MensajeError('Error al conectarse al servidor')
+                    Mensajes.mensajeError('Error al conectarse al servidor')
                 }
             })
         });

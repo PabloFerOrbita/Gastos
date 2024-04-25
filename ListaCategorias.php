@@ -56,7 +56,7 @@
             },
             error: () => {
                 $('#tabla').addClass('d-none');
-                Mensajes.MensajeError('Error al conectarse al servidor');
+                Mensajes.mensajeError('Error al conectarse al servidor');
 
 
             }
@@ -78,14 +78,14 @@
                 success: (data) => {
                     if (data) {
                         $(`#fila${e.target.id}`).remove();
-                        Mensajes.MensajeExito('Categoría eliminada');
+                        Mensajes.mensajeExito('Categoría eliminada');
                     } else {
-                        Mensajes.MensajeError('Error al eliminar la categoría')
+                        Mensajes.mensajeError('Error al eliminar la categoría')
 
                     }
                 },
                 error: () => {
-                    Mensajes.MensajeError('Error al conectarse al servidor');
+                    Mensajes.mensajeError('Error al conectarse al servidor');
                 }
             })
         }
