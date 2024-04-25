@@ -21,6 +21,7 @@
     <script>
         var categorias;
         $.ajax({
+            method: 'POST',
             url: 'manejarLLamadas.php',
             dataType: 'json',
             data: {
@@ -31,6 +32,7 @@
                 if (data !== null) {
                     categorias = data;
                     $.ajax({
+                        method:'POST',
                         url: 'manejarLLamadas.php',
                         dataType: 'json',
                         data: {
