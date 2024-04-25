@@ -1,7 +1,7 @@
 class RellenarTabla {
 
     static rellenarGastos(data, categorias = []) {
-        if (data < 1){
+        if (data.length < 1){
             return;
         }
 
@@ -24,7 +24,7 @@ class RellenarTabla {
     }
 
     static rellenarCategorias(data) {
-        if(data < 1){
+        if(data.length < 1){
             return;
         }
 
