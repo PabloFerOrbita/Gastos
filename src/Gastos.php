@@ -26,7 +26,7 @@ class Gastos
         $join = '';
         $select = [];
         if ($categorias) {
-            $join = 'JOIN categorias WHERE gastos.categoria_id = categorias.id';
+            $join = ' JOIN categorias WHERE gastos.categoria_id = categorias.id';
             $select = ['gastos.*', 'categorias.nombre as categoria'];
         }
 

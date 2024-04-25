@@ -59,7 +59,7 @@ class Database
         $sql .= ' FROM ' . $tabla . $join;
 
         if ($parametroBusqueda !== '' && $valorAbuscar !== '') {
-            $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar);
+            $sql .= $this->busqueda($parametroBusqueda, $valorAbuscar, ($join !== ''));
         }
         $query = $con->prepare($sql);
         try {
@@ -267,16 +267,16 @@ class Database
      * Devuelve el string que se debe añadir a la sentencia sql para poder filtrar los resultados
      */
 
-    private function busqueda(string $parametroBusqueda, mixed $valorAbuscar): string
+    private function busqueda(string $parametroBusqueda, mixed $valorAbuscar, bool $join = false): string
     {
         if (is_bool($valorAbuscar)) {
-            return ' WHERE ' . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
+            return ($join ? ' and ' : ' WHERE ') . $parametroBusqueda . ' = ' . (int) $valorAbuscar;
         }
         if (is_numeric($valorAbuscar)) {
-            return ' WHERE ' . $parametroBusqueda . ' = ' . $valorAbuscar;
+            return ($join ? ' and ' : ' WHERE ') . $parametroBusqueda . ' = ' . $valorAbuscar;
         }
         if (is_string($valorAbuscar)) {
-            return ' WHERE ' . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
+            return ($join ? ' and ' : ' WHERE ') . $parametroBusqueda . ' like "%' . $valorAbuscar . '%"';;
         }
 
         return '';
