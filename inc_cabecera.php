@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
@@ -19,7 +20,7 @@
         <a id="nuevo" class="btn btn-link text-white" href="nuevoGasto.php">Nuevo</a>
         <a id="categorias" class="btn btn-link text-white" href="ListaCategorias.php">Categorias</a>
 
-        <h1 class="text-white">Contabilidad</h1>
+        <h1 class="text-white" id='titulo-cabecera'></h1>
     </header>
     <?php
     class Inc_cabecera
@@ -135,7 +136,12 @@
         }
     }
     ?>
-    
+    <script>
+        $('.btn').click((e) => {sessionStorage.setItem('titulo', $(e.target).text())});
+       $(window).on('load', () => {
+        $('#titulo-cabecera').text((sessionStorage.getItem('titulo') !== null ? sessionStorage.getItem('titulo') : 'Inicio') )
+       })
+    </script>
 </body>
 
 </html>
