@@ -52,7 +52,7 @@
             success: (data) => {
 
                 if (data.length > 0) {
-                    RellenarTabla.RellenarGastos(data)
+                    RellenarTabla.rellenarGastos(data)
                 } else {
                     Mensajes.MensajeAdvertencia('No hay datos')
                 }

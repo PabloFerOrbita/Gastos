@@ -51,7 +51,7 @@
 
             },
             success: (data) => {
-                RellenarTabla.RellenarCategorias(data);
+                RellenarTabla.rellenarCategorias(data);
                 $('.eliminar').on('click', eliminar);
             },
             error: () => {
