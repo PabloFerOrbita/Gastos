@@ -1,58 +1,5 @@
 <?php
 require_once('Database.php');
-if (isset($_POST['accion'])) {
-    $Gasto = new Gastos();
-    switch ($_POST['accion']) {
-
-        case 'obtener_todos':
-
-            echo json_encode($Gasto->obtener_todos());
-            break;
-        case 'obtener':
-            if (isset($_POST['filtro']) && isset($_POST['valor'])) {
-                echo json_encode($Gasto->obtener($_POST['filtro'], $_POST['valor']));
-            } else {
-                echo json_encode($Gasto->obtener());
-            }
-            break;
-        case 'obtener_gasto':
-            if (isset($_POST['id'])) {
-                echo json_encode($Gasto->obtener_gasto($_POST['id']));
-            } else {
-                echo json_encode('Error: se debe especificar un id');
-            }
-            break;
-        case 'eliminar':
-            if (isset($_POST['id'])) {
-                echo json_encode($Gasto->eliminar_gasto($_POST['id']));
-            } else {
-                echo json_encode('Error: se debe especificar un id');
-            }
-            break;
-        case 'actualizar':
-            if (isset($_POST['datos']) && isset($_POST['filtro']) && isset($_POST['valor'])) {
-                    echo json_encode($Gasto->actualizar($_POST['datos'], $_POST['filtro'], $_POST['valor']));
-            } else {
-                echo json_encode('Error: no se han introducido datos');
-            }
-            break;
-        case 'aniadir':
-            if (isset($_POST['datos'])) {
-                echo json_encode($Gasto->aniadir($_POST['datos']));
-            } else {
-                echo json_encode('Error: no se han introducido datos');
-            }
-            break;
-        case 'total':
-            echo json_encode($Gasto->total());
-            break;
-        case 'suma';
-            echo json_encode($Gasto->obtener_suma_gastos());
-            break;
-        default:
-            echo json_encode('La acción no existe');
-    }
-}
 class Gastos
 {
     private $tabla = 'gastos';
